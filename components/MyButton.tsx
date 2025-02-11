@@ -5,8 +5,8 @@ import { TouchableOpacity, View } from "react-native";
 const BackVariant = cva("rounded-2xl", {
   variants: {
     colors: {
-      primary: "bg-[#5a9e87]",
-      second: "bg-[#4a826f]",
+      primary: "bg-[#4a826f]",
+      second: "",
       clear: "",
     },
   },
@@ -20,8 +20,8 @@ const FontVariant = cva(
   {
     variants: {
       colors: {
-        primary: "bg-[#7db5a2]",
-        second: "bg-[#5a9e87]",
+        primary: "bg-[#5a9e87]",
+        second: "",
         clear: "",
       },
       sizes: {

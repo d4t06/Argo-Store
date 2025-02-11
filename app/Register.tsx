@@ -61,8 +61,8 @@ export default function RegisterScreen() {
 
 			<Text>or</Text>
 
-			<Link href={"/Login"} className="mt-3">
-				<MyButton colors={"second"}>
+			<Link href={"/"} className="mt-3">
+				<MyButton>
 					<Text className="text-white">Login</Text>
 				</MyButton>
 			</Link>

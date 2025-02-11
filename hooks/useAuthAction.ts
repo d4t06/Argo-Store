@@ -19,7 +19,7 @@ type AuthResponse = {
 };
 
 export default function useAuthAction() {
-	const { setAuth } = useAuth();
+	const { setAuth, auth } = useAuth();
 	const [isFetching, setIsFetching] = useState(false);
 
 	const router = useRouter();
@@ -48,24 +48,30 @@ export default function useAuthAction() {
 
 			switch (props.type) {
 				case "login": {
-					const res = await axios.post("/auth/login", props);
-					const data = res.data.data as AuthResponse;
+					// const res = await axios.post("/auth/login", props);
+					// const data = res.data.data as AuthResponse;
 
-					if (data) {
-						setAuth({
-							token: data.token,
-							storeName: data.store_name,
-						});
+					// if (data) {
+					// 	setAuth({
+					// 		token: data.token,
+					// 		storeName: data.store_name,
+					// 	});
 
-						router.push("/");
-					}
+					// 	router.push("/");
+					// }
+
+					setAuth({
+						token: "test",
+						storeName: "test",
+					});
+
 					break;
 				}
 				case "logout": {
-					await request.get("/auth/logout");
+					// await request.get("/auth/logout");
 					setAuth(null);
 
-					router.push("/Login");
+					// router.push("/");
 					break;
 				}
 				case "register": {
@@ -73,7 +79,7 @@ export default function useAuthAction() {
 
 					await axios.post("/auth/register", props);
 
-					router.push("/Login");
+					router.push("/");
 
 					break;
 				}
@@ -84,5 +90,5 @@ export default function useAuthAction() {
 			throw error;
 		}
 	};
-	return { isFetching, action };
+	return { isFetching, action, auth };
 }

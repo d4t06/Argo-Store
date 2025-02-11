@@ -1,15 +1,18 @@
 import MyButton from "@/components/MyButton";
 import useAuthAction from "@/hooks/useAuthAction";
-import { Link } from "expo-router";
-import { useState } from "react";
-import { Button, Text, TextInput, View } from "react-native";
+import usePersistAuth from "@/hooks/usePersistAuth";
+import { Link, Redirect, Slot, useRouter } from "expo-router";
+import { ReactNode, useEffect, useState } from "react";
+import { ActivityIndicator, Button, Text, TextInput, View } from "react-native";
 
 export default function LoginScreen() {
-	const { isFetching, action } = useAuthAction();
+	const { isFetching, action, auth } = useAuthAction();
 
 	const [phoneNumber, setPhoneNumber] = useState("");
 	const [password, setPassword] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
+
+	const router = useRouter();
 
 	const ableToSubmit = password && phoneNumber;
 
@@ -28,6 +31,12 @@ export default function LoginScreen() {
 			console.log(error);
 		}
 	};
+
+	useEffect(() => {
+		console.log("check auth from loggin", auth);
+
+		if (auth) return router.replace("/(lobby)/Home");
+	}, [auth]);
 
 	const classes = {
 		input: "w-1/2 rounded-md border border-black/20",
@@ -60,7 +69,7 @@ export default function LoginScreen() {
 			</MyButton>
 			<Text>or</Text>
 			<Link href={"/Register"} className="mt-3">
-				<MyButton colors={"second"}>
+				<MyButton>
 					<Text className="text-white">Register</Text>
 				</MyButton>
 			</Link>

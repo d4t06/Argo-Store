@@ -9,19 +9,13 @@ export default function usePersistAuth() {
 	const router = useRouter();
 
 	useEffect(() => {
-		const auth = async () => {
+		const handleGetAuth = async () => {
 			await sleep(1000);
 			setLoading(false);
 		};
 
-		auth();
+		handleGetAuth();
 	}, []);
-
-	useEffect(() => {
-		if (loading) return;
-
-		if (!auth) return router.push("/Login");
-	}, [loading]);
 
 	return { auth, loading };
 }
