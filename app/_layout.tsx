@@ -52,7 +52,7 @@ export default function RootLayout() {
   return (
     <ProductsProvider>
       <AuthProvider>
-        <Slot />
+        <RootLayoutAuth />
       </AuthProvider>
     </ProductsProvider>
   );

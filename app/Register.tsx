@@ -28,7 +28,7 @@ export default function RegisterScreen() {
 	};
 
 	const classes = {
-		input: "w-1/2 rounded-md border border-black/20",
+		input: "w-1/2 rounded-md border border-black/20 p-3",
 	};
 
 	return (
@@ -45,17 +45,20 @@ export default function RegisterScreen() {
 			<TextInput
 				value={phoneNumber}
 				onChangeText={setPhoneNumber}
-				className={classes.input}
+				className={`${classes.input} mt-5`}
 				placeholder="Phone number"
+				placeholderTextColor={'#ccc'}
+
 			/>
 			<TextInput
 				value={password}
 				onChangeText={setPassword}
 				className={classes.input}
+				placeholderTextColor={'#ccc'}
 				placeholder="Password"
 			/>
 
-			<MyButton backStyle="mt-3" onPress={handleRegister}>
+			<MyButton backStyle="mt-6" onPress={handleRegister}>
 				<Text className="text-white font-[500] text-lg">Register</Text>
 			</MyButton>
 

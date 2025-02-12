@@ -1,6 +1,4 @@
 import { Image, Text, View } from "react-native";
-import { ThemedText } from "./ThemedText";
-import { ThemedView } from "./ThemedView";
 
 type Props = {
 	product: ProductList;
@@ -15,14 +13,14 @@ export default function ProductListItem({ product }: Props) {
 			/>
 
 			<View className="ml-2 max-w-[60%]">
-				<ThemedText className="font-semibold ">{product.title}</ThemedText>
+				<Text className="font-semibold ">{product.title}</Text>
 			</View>
 			<View className="ml-auto flex-shrink-0">
-				<ThemedText lightColor="red" className="font-[500] text-right">
+				<Text  className="font-[500] text-right">
 					{product.price}
-				</ThemedText>
-				<ThemedText className="text-right">1pcs</ThemedText>
-				<ThemedText lightColor="red" type="subtitle" className="mt-3 text-right">SL: 10</ThemedText>
+				</Text>
+				<Text className="text-right">1pcs</Text>
+				<Text  className="mt-3 text-right">SL: 10</Text>
 			</View>
 		</View>
 	);

@@ -39,12 +39,12 @@ export default function LoginScreen() {
 	}, [auth]);
 
 	const classes = {
-		input: "w-1/2 rounded-md border border-black/20",
+		input: "w-1/2 rounded-md border border-black/20 p-4",
 	};
 
 	return (
 		<View
-			className={`flex-1 items-center justify-center gap-2 ${isFetching ? "opacity-[40]" : ""}`}
+			className={`flex-1 bg-white items-center justify-center gap-2`}
 		>
 			<Text className="text-3xl font-bold">Best App Ever</Text>
 			{errorMessage && (
@@ -55,17 +55,20 @@ export default function LoginScreen() {
 			<TextInput
 				value={phoneNumber}
 				onChangeText={setPhoneNumber}
-				className={classes.input}
+				className={`${classes.input} mt-5`}
 				placeholder="Phone number"
+				placeholderTextColor={"#ccc"}
 			/>
 			<TextInput
 				value={password}
 				onChangeText={setPassword}
 				className={classes.input}
 				placeholder="Password"
+				placeholderTextColor={"#ccc"}
+
 			/>
-			<MyButton disabled={!ableToSubmit} onPress={handleLogin} backStyle="mt-3">
-				<Text className="text-white text-lg">Login</Text>
+			<MyButton loading={isFetching} disabled={!ableToSubmit} onPress={handleLogin} backStyle="mt-6">
+				<Text className="text-white">Login</Text>
 			</MyButton>
 			<Text>or</Text>
 			<Link href={"/Register"} className="mt-3">

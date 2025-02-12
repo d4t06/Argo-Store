@@ -11,6 +11,7 @@ import {
 	ActivityIndicator,
 	FlatList,
 	Image,
+	SafeAreaView,
 	Text,
 	TouchableOpacity,
 	View,
@@ -44,19 +45,21 @@ function Content() {
 
 	return (
 		<>
-			<FlatList
-				className="px-2"
-				data={products}
-				renderItem={({ item }) => (
-					<TouchableOpacity onPress={() => select(item)}>
-						<ProductListItem product={item} />
-					</TouchableOpacity>
-				)}
-				keyExtractor={(item) => item.id + ""}
-				refreshing={refreshing}
-				onRefresh={handleRefresh}
-				ItemSeparatorComponent={() => <View className="h-2" />}
-			/>
+			<SafeAreaView>
+				<FlatList
+					className="px-2"
+					data={products}
+					renderItem={({ item }) => (
+						<TouchableOpacity onPress={() => select(item)}>
+							<ProductListItem product={item} />
+						</TouchableOpacity>
+					)}
+					keyExtractor={(item) => item.id + ""}
+					refreshing={refreshing}
+					onRefresh={handleRefresh}
+					ItemSeparatorComponent={() => <View className="h-2" />}
+				/>
+			</SafeAreaView>
 		</>
 	);
 }
@@ -65,6 +68,7 @@ export default function HomeScreen() {
 	return (
 		<ProductSelectProvider>
 			<Content />
+
 		</ProductSelectProvider>
 	);
 }

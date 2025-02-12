@@ -1,6 +1,8 @@
 import { cva, VariantProps } from "class-variance-authority";
 import { ReactNode, useState } from "react";
+import { ActivityIndicator } from "react-native";
 import { TouchableOpacity, View } from "react-native";
+import { ArrowPathIcon } from "react-native-heroicons/outline";
 
 const BackVariant = cva("rounded-2xl", {
   variants: {
@@ -53,6 +55,7 @@ export default function MyButton({
   onPress,
   backStyle = "",
   fontStyle = "",
+  loading,
   sizes,
   children,
   disabled,
@@ -61,10 +64,11 @@ export default function MyButton({
 
   return (
     <View
+      aria-disabled={disabled}
       className={`${BackVariant({
         colors,
         className: backStyle,
-      })} `}
+      })} ${disabled ? "opacity-40" : ""}`}
     >
       <TouchableOpacity
         onPress={onPress}
@@ -78,7 +82,7 @@ export default function MyButton({
           className: fontStyle,
         })} ${press ? "translate-y-[-3px]" : "translate-y-[-6px]"}`}
       >
-        {children}
+        {loading ? <ActivityIndicator color={"white"} /> : children}
       </TouchableOpacity>
     </View>
   );
