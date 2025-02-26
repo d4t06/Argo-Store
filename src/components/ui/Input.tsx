@@ -1,7 +1,7 @@
 import { cva, VariantProps } from "class-variance-authority";
 import { forwardRef, InputHTMLAttributes, Ref } from "react";
 
-const inputVariants = cva("", {
+const inputVariants = cva("w-full", {
   variants: {
     variant: {
       primary:

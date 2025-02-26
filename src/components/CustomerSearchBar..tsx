@@ -11,7 +11,7 @@ export default function CustomerSearchBar({ value, setValue }: Props) {
   return (
     <Frame
       colors={"second"}
-      className="flex-row gap-2 justify-between items-center"
+      className="flex gap-2 justify-between items-center"
     >
       <Input
         value={value}
@@ -21,7 +21,7 @@ export default function CustomerSearchBar({ value, setValue }: Props) {
       <Button
         onClick={() => (value ? setValue("") : {})}
         size={"clear"}
-        className="p-2"
+        className="p-2 flex-shrink-0"
       >
         {value ? (
           <XMarkIcon className="w-6" />

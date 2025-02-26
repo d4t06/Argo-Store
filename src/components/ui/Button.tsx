@@ -3,7 +3,7 @@ import { cva, VariantProps } from "class-variance-authority";
 import { ReactNode } from "react";
 import { Link } from "react-router";
 
-const ButtonVariant = cva("inline-flex relative items-center z-0", {
+const ButtonVariant = cva("inline-flex relative space-x-1 items-center z-0", {
   variants: {
     variant: {
       primary:
@@ -37,7 +37,7 @@ const ButtonVariant = cva("inline-flex relative items-center z-0", {
     },
   },
   defaultVariants: {
-    variant: 'primary',
+    variant: "primary",
     color: "primary",
     size: "primary",
     fontWeight: "primary",
@@ -102,7 +102,7 @@ export default function Button({
           className={`${ButtonVariant({
             variant,
             size,
-            color,
+            color: active ? "primary" : color,
             border,
             fontWeight,
             className,

@@ -1,4 +1,5 @@
 import { moneyFormat } from "@/utils/moneyFormat";
+import simon_empty from "@/assets/images/simon_empty.png"
 
 type Props = {
   product: Product;
@@ -7,19 +8,20 @@ type Props = {
 
 export default function ProductListItem({ product, selected }: Props) {
   return (
-    <>
+    <div className="flex">
       <img
+      className="w-[70px] h-[70px]"
         src={
           product.image_url
             ? product.image_url
-            : "@/assets/images/simon_empty.png"
+            : simon_empty
         }
       />
 
       <div className="ml-2 max-w-[60%]">
         <p
           className={`text-[18px] break-all  ${
-            selected ? "text-[#5a9e87]" : "text-[#1f1f1f]"
+            selected ? "text-xanh-500" : "text-[#1f1f1f]"
           }`}
         >
           {product.product_name}
@@ -39,6 +41,6 @@ export default function ProductListItem({ product, selected }: Props) {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }

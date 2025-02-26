@@ -1,10 +1,9 @@
-import { Text, TextInput, View } from "react-native";
-import { ModalHeader } from "../ui/Modal";
 import { useEffect, useState } from "react";
-import MyButton from "../MyButton";
 import useCustomerAction from "@/hooks/useCustomerAction";
 import { initCustomerObject } from "@/utils/appHelper";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import ModalHeader from "../ui/ModalHeader";
+import { Button, Input } from "../ui";
+import { CheckIcon } from "@heroicons/react/16/solid";
 
 type Props = {
 	closeModal: () => void;
@@ -91,59 +90,58 @@ export default function AddCustomerModal({
 	}, [customer.phone_number]);
 
 	const title =
-		props.type === "edit" ? `Edit '${props.customer.customer_name}'` : `Add customer`;
+		props.type === "edit"
+			? `Edit '${props.customer.customer_name}'`
+			: `Add customer`;
 
 	return (
 		<>
-			<ModalHeader close={closeModal} title={title} />
+			<ModalHeader closeModal={closeModal} title={title} />
 
-			<View className="gap-3">
-				<View className={classes.inputGroup}>
-					<Text className={classes.label}>Customer name:</Text>
-					<TextInput
+			<div className="space-y-3">
+				<div className={classes.inputGroup}>
+					<label className={classes.label}>Customer name:</label>
+					<Input
 						value={customer.customer_name}
-						onChangeText={(v) => handleInput("customer_name", v)}
+						onChange={(e) => handleInput("customer_name", e.target.value)}
 						placeholder="Enter name..."
 						className={classes.input}
-						placeholderTextColor={"#ccc"}
 					/>
-				</View>
+				</div>
 
-				<View className={classes.inputGroup}>
-					<Text
+				<div className={classes.inputGroup}>
+					<p
 						className={`${classes.label} ${!isValidPhoneNumber ? "text-red-500" : ""}`}
 					>
 						Phone number:
-					</Text>
-					<TextInput
+					</p>
+					<Input
 						value={customer.phone_number}
-						onChangeText={(v) => handleInput("phone_number", v)}
+						onChange={(e) => handleInput("phone_number", e.target.value)}
 						className={classes.input}
-						placeholderTextColor={"#ccc"}
 					/>
-				</View>
+				</div>
 
-				<View className={classes.inputGroup}>
-					<Text className={classes.label}>Address:</Text>
-					<TextInput
+				<div className={classes.inputGroup}>
+					<p className={classes.label}>Address:</p>
+					<Input
 						value={customer.address}
-						onChangeText={(v) => handleInput("address", v)}
+						onChange={(e) => handleInput("address", e.target.value)}
 						className={classes.input}
-						placeholderTextColor={"#ccc"}
 					/>
-				</View>
-			</View>
+				</div>
+			</div>
 
-			<View className="items-center mt-5">
-				<MyButton
+			<div className="text-center mt-5">
+				<Button
 					disabled={!ableToSubmit}
 					loading={isFetching}
-					onPress={() => ableToSubmit && handleSubmit()}
+					onClick={() => ableToSubmit && handleSubmit()}
 				>
-					<Ionicons name="add-outline" size={24} color={"white"} />
-					<Text className="text-white">Ok</Text>
-				</MyButton>
-			</View>
+					<CheckIcon className="w-6" />
+					<p className="text-white">Ok</p>
+				</Button>
+			</div>
 		</>
 	);
 }

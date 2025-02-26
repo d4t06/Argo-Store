@@ -1,25 +1,27 @@
-import { Text, View } from "react-native";
+import { Frame } from "./ui";
 
 type Props = {
   customer: Customer;
   className?: string;
+  onClick?: () => void;
 };
 
 export default function CustomerItem({
   customer,
-  className = "p-2 border border-black/10 rounded-lg bg-white",
+  onClick,
+  className = "",
 }: Props) {
   return (
-    <View className={`flex-row w-full ${className}`}>
-      <View className="ml-2">
-        <Text className={`text-lg`}>{customer.customer_name}</Text>
+    <Frame onClick={onClick} className={`flex-row ${className}`}>
+      <div className="ml-2">
+        <p className={`text-lg`}>{customer.customer_name}</p>
 
-        <View className="mt-1">
+        <div className="mt-1">
           {!!customer.phone_number && (
-            <Text className="text-[#3f3f3f]">{customer.phone_number}</Text>
+            <p className="text-[#3f3f3f]">{customer.phone_number}</p>
           )}
-        </View>
-      </View>
-    </View>
+        </div>
+      </div>
+    </Frame>
   );
 }

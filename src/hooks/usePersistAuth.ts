@@ -4,7 +4,7 @@ import { auth } from "@/firebase/firebase";
 import { myGetDoc, mySetDoc } from "@/firebase/firebaseService";
 
 export default function usePersistAuth() {
-	const { setUser, setLoading, loading, justRegistered } = useAuth();
+	const { setUser, setLoading, loading, user, justRegistered } = useAuth();
 
 	useEffect(() => {
 		const handleGetAuth = async () => {
@@ -40,5 +40,5 @@ export default function usePersistAuth() {
 		handleGetAuth();
 	}, []);
 
-	return { auth, loading };
+	return { user, loading };
 }

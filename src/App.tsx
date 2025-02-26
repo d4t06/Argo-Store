@@ -1,7 +1,24 @@
-import { HashRouter as Router, Routes, Route, Outlet } from "react-router";
-import { publicRoutes } from "./routes";
-import { NoResult } from "./components/ui";
+import {
+  HashRouter as Router,
+  Routes,
+  Route,
+  Outlet,
+  Navigate,
+} from "react-router";
+import { protectedRoutes, publicRoutes } from "./routes";
+import { Loading, NoResult } from "./components/ui";
 import DefaultLayout from "./layouts/DefaultLayout";
+import usePersistAuth from "./hooks/usePersistAuth";
+
+function RequireAuth() {
+  const { user, loading } = usePersistAuth();
+
+  if (loading) return <Loading />;
+
+  if (!user) return <Navigate to={"/login"} />;
+
+  return <Outlet />;
+}
 
 export default function App() {
   return (
@@ -28,6 +45,27 @@ export default function App() {
               />
             );
           })}
+
+          <Route element={<RequireAuth />}>
+            {protectedRoutes.map((route, index) => {
+              const Page = route.component;
+              let Layout;
+              if (route.layout) Layout = route.layout;
+              else Layout = DefaultLayout;
+
+              return (
+                <Route
+                  key={index}
+                  path={route.path}
+                  element={
+                    <Layout>
+                      <Page />
+                    </Layout>
+                  }
+                />
+              );
+            })}
+          </Route>
         </Routes>
       </Router>
     </>

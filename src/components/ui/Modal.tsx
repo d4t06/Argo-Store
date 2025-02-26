@@ -31,6 +31,7 @@ function Modal({ children }: Props, ref: Ref<ModalRef>) {
 
   const close = () => {
     setIsMounted(false);
+    setIsOpen(false);
   };
 
   useImperativeHandle(ref, () => ({
@@ -41,9 +42,7 @@ function Modal({ children }: Props, ref: Ref<ModalRef>) {
 
   useEffect(() => {
     if (!isMounted) {
-      setTimeout(() => {
-        setIsOpen(false);
-      }, 200);
+      setIsOpen(false);
     }
   }, [isMounted]);
 
@@ -66,7 +65,7 @@ function Modal({ children }: Props, ref: Ref<ModalRef>) {
         createPortal(
           <>
             <div
-              className={`fixed transition-opacity ease-linear duration-200 inset-0 bg-black opacity-60
+              className={`fixed transition-opacity ease-linear duration-150 inset-0 bg-black/40
                                 ${
                                   isMounted
                                     ? classes.mountedLayer
@@ -85,11 +84,13 @@ function Modal({ children }: Props, ref: Ref<ModalRef>) {
                                    }
                                 `}
               >
-                {children}
+                <div className="bg-white max-h-[80vh] overflow-hidden p-3 rounded-lg w-[400px] flex flex-col max-w-[90vw]">
+                  {children}
+                </div>
               </div>
             )}
           </>,
-          document.querySelector("#portals")!
+          document.querySelector("#portal")!,
         )}
     </>
   );

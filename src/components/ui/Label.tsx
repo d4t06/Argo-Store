@@ -3,13 +3,13 @@ import { ReactNode } from "react";
 type LabelProps = {
 	title: string;
 	icon: ReactNode;
-	className?:string
+	className?: string;
 };
-export default function Label({ icon, className = '', title }: LabelProps) {
+export default function Label({ icon, className = "", title }: LabelProps) {
 	return (
-		<div className={`flex-row gap-2 items-center ${className}`}>
+		<div className={`flex text-xanh-500 gap-2 items-center ${className}`}>
 			{icon}
-			<p className="text-[#5a9e87] text-2xl">{title}</p>
+			<p className="text-xl">{title}</p>
 		</div>
 	);
 }

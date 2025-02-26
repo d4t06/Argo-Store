@@ -17,8 +17,21 @@ const Variant = cva("border-[2px] p-3 border-b-[6px] rounded-[14px]", {
 type Props = VariantProps<typeof Variant> & {
   children: ReactNode;
   className?: string;
+  onClick?: () => void;
 };
 
-export default function Frame({ children, colors, className = "" }: Props) {
-  return <div className={`${Variant({ colors, className })} `}>{children}</div>;
+export default function Frame({
+  children,
+  onClick,
+  colors,
+  className = "",
+}: Props) {
+  return (
+    <div
+      onClick={() => (onClick ? onClick() : {})}
+      className={`${Variant({ colors, className })} `}
+    >
+      {children}
+    </div>
+  );
 }
