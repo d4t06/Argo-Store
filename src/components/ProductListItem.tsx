@@ -1,0 +1,44 @@
+import { moneyFormat } from "@/utils/moneyFormat";
+
+type Props = {
+  product: Product;
+  selected: boolean;
+};
+
+export default function ProductListItem({ product, selected }: Props) {
+  return (
+    <>
+      <img
+        src={
+          product.image_url
+            ? product.image_url
+            : "@/assets/images/simon_empty.png"
+        }
+      />
+
+      <div className="ml-2 max-w-[60%]">
+        <p
+          className={`text-[18px] break-all  ${
+            selected ? "text-[#5a9e87]" : "text-[#1f1f1f]"
+          }`}
+        >
+          {product.product_name}
+        </p>
+
+        <p className={`text-sm text-[#808080]`}>
+          Stock: {product.stock}
+        </p>
+      </div>
+      <div className="ml-auto flex-shrink-0 gap-1">
+        {product.units.map((u, i) => (
+          <div key={i}>
+            <p className="text-[#808080]">{u.unit_name}:</p>
+            <p className="text-red-500">
+              {moneyFormat(u.price)}
+            </p>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}

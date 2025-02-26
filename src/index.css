@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@theme {
+  --color-xanh-400: #cee9b6;
+  --color-xanh-500: #5a9e87;
+}
+
+button[disabled],
+.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
