@@ -23,7 +23,7 @@ export default function ProductInfo() {
   if (!currentProductData) return;
 
   return (
-    <div className="space-y-1">
+    <div className="space-y-2">
       <div className="flex justify-between">
         <Label icon={<DocumentTextIcon className="w-6" />} title="Info" />
 

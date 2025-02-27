@@ -1,6 +1,5 @@
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { CheckIcon, XMarkIcon } from "@heroicons/react/16/solid";
 import { useEffect, useState } from "react";
-import { Text, TouchableOpacity } from "react-native";
 
 type Props = {
   toast: Toast;
@@ -41,9 +40,9 @@ export default function ToastItem({
     if (props.variant === "notify") {
       switch (props.toast.variant) {
         case "success":
-          return <Ionicons name="checkmark" size={24} className="text-white" />;
+          return <CheckIcon className="w-6" />;
         case "error":
-          return <Ionicons name="close" size={24} className="text-white" />;
+          return <XMarkIcon className="w-6" />;
       }
     }
   };
@@ -55,8 +54,8 @@ export default function ToastItem({
   }, []);
 
   return (
-    <TouchableOpacity
-      onPress={() =>
+    <div
+      onClick={() =>
         props.variant === "notify" && props.onClick
           ? props.onClick(props.toast.id)
           : undefined
@@ -65,11 +64,11 @@ export default function ToastItem({
     >
       {variant === "notify" && renderIcon()}
 
-      <Text className={classes.text}>
+      <p className={classes.text}>
         {/*@ts-ignore*/}
         {variant === "notify" && props.toast.desc}
         {props.variant === "message" && props.message}
-      </Text>
-    </TouchableOpacity>
+      </p>
+    </div>
   );
 }

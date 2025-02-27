@@ -12,6 +12,7 @@ export default function CurrencyInput({ value, setValue }: Props) {
       <Input
         type="number"
         step={1000}
+        min={0}
         placeholder="0"
         value={value ? value.toString() : ""}
         onChange={(e) =>

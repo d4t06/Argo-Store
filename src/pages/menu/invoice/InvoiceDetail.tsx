@@ -11,6 +11,7 @@ import {
   ShoppingBagIcon,
 } from "@heroicons/react/24/outline";
 import CheckoutInvoiceItem from "@/components/CheckoutInvoiceItem";
+import Header from "@/components/Header";
 
 export default function InvoiceDetailPage() {
   const { currentInvoiceData } = useInvoiceContext();
@@ -23,7 +24,7 @@ export default function InvoiceDetailPage() {
 
     const content = generateInvoiceHtmnl(
       invoice,
-      convertFirestoreTimestampToString(invoice.created_at)
+      convertFirestoreTimestampToString(invoice.created_at),
     );
 
     printer(content);
@@ -34,14 +35,16 @@ export default function InvoiceDetailPage() {
 
   return (
     <>
-      <div className="h-full overflow-auto">
+      <Header title="Invoice detail" />
+
+      <div className="overflow-auto pb-20">
         <div className="space-y-4">
-          <div className="gap-1">
+          <div className="space-y-1.5">
             <Label
               icon={<DocumentTextIcon className="w-6" />}
               title="Invoice info"
             />
-            <Frame className="gap-2.5">
+            <Frame className="space-y-2.5">
               <div className="">
                 <p className="text-[#333]">Customer:</p>
                 <p className="text-2xl">{invoice.customer_name}</p>
@@ -68,12 +71,12 @@ export default function InvoiceDetailPage() {
             </Frame>
           </div>
 
-          <div className="gap-1">
+          <div className="space-y-1.5">
             <Label
               icon={<ShoppingBagIcon className="w-6" />}
               title="Products"
             />
-            <Frame className="gap-1">
+            <Frame className="space-y-1.5">
               {invoice.items.map((iItem, i) => (
                 <CheckoutInvoiceItem invoiceItem={iItem} key={i} />
               ))}

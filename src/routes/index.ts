@@ -1,5 +1,6 @@
 import AuthLayout from "@/layouts/AuthLayout";
 import CartLayout from "@/layouts/CartLayout";
+import InvoiceLayout from "@/layouts/InvoiveLayout";
 import ReceiveLayout from "@/layouts/ReceiveLayout";
 import CartPage from "@/pages/home/Cart";
 import CheckoutPage from "@/pages/home/Checkout";
@@ -18,7 +19,6 @@ import ReceivingCartPage from "@/pages/menu/receive/Cart";
 import ReceivingCheckoutPage from "@/pages/menu/receive/Checkout";
 import MenuReceivePage from "@/pages/menu/receive/Receive";
 import Signup from "@/pages/Signup";
-import InvoiceProvider from "@/stores/local/InvoicesContext";
 
 const publicRoutes = [
   {
@@ -82,12 +82,12 @@ const protectedRoutes = [
   {
     path: "/menu/invoice",
     component: MenuInvoicePage,
-    layout: InvoiceProvider,
+    layout: InvoiceLayout,
   },
   {
     path: "/menu/invoice/:id",
     component: InvoiceDetailPage,
-    layout: InvoiceProvider,
+    layout: InvoiceLayout,
   },
   {
     path: "/menu/receive",

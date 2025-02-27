@@ -1,4 +1,5 @@
 import BubbleCartBtn from "@/components/BubbleCartBtn";
+import Header from "@/components/Header";
 import MenuBtn from "@/components/MenuBtn";
 import ProductListItem from "@/components/ProductListItem";
 import ProductSearchBar from "@/components/ProductSearchBar";
@@ -24,34 +25,38 @@ export default function AddReceivingPage() {
   }, []);
 
   return (
-    <div className="overflow-auto pb-20">
-      <ProductSearchBar {...rest} />
+    <>
+      <Header title="New receive" />
 
-      {isFetching ? (
-        <Loading />
-      ) : (
-        <>
-          {_products.length ? (
-            <div className="mt-5 overflow-auto space-y-2">
-              {_products.map((p, index) => {
-                const selected = cartItems.find((_p) => _p.id === p.id);
+      <div className="overflow-auto pb-20">
+        <ProductSearchBar {...rest} />
 
-                return (
-                  <Frame onClick={() => select(p)} key={index}>
-                    <ProductListItem product={p} selected={!!selected} />
-                  </Frame>
-                );
-              })}
-            </div>
-          ) : (
-            <NotFound />
-          )}
-        </>
-      )}
+        {isFetching ? (
+          <Loading />
+        ) : (
+          <>
+            {_products.length ? (
+              <div className="mt-5 overflow-auto space-y-2">
+                {_products.map((p, index) => {
+                  const selected = cartItems.find((_p) => _p.id === p.id);
 
-      <BubbleCartBtn count={cartItems.length} href="/menu/receive/cart" />
+                  return (
+                    <Frame onClick={() => select(p)} key={index}>
+                      <ProductListItem product={p} selected={!!selected} />
+                    </Frame>
+                  );
+                })}
+              </div>
+            ) : (
+              <NotFound />
+            )}
+          </>
+        )}
 
-      <MenuBtn />
-    </div>
+        <BubbleCartBtn count={cartItems.length} href="/menu/receive/cart" />
+
+        <MenuBtn />
+      </div>
+    </>
   );
 }

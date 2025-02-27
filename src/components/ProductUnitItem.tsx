@@ -91,15 +91,16 @@ export default function ProductUnitItem({ productUnit, index }: Props) {
   };
 
   return (
-    <div className="bg-[#fff] shadow-lg border border-black/5 p-2 rounded-md">
-      <p className="text-center font-semibold text-xl line-clamp-1">
-        {productUnit.unit_name}
-      </p>
+    <div className="bg-gray-100 border border-black/10 p-2 rounded-md">
+      <p className="text-center font-[500] text-lg line-clamp-1">{productUnit.unit_name}</p>
 
       <div className="gap-2 mt-3">
-        <p className="text-lg text-[#888] font-[500]">x{productUnit.conversion_quantity}</p>
-
-        <p className="text-xl text-red-500 font-[500]">{moneyFormat(productUnit.price)}</p>
+        <p className="text-md text-[#888] font-[500]">
+          x{productUnit.conversion_quantity}
+        </p>
+        <p className="text-md text-red-500 font-[500]">
+          {moneyFormat(productUnit.price)}
+        </p>
       </div>
 
       <div className="flex gap-2 justify-center mt-5">

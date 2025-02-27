@@ -1,8 +1,5 @@
-import {
-	customerReceiptCollectionRef,
-	invoiceCollectionRef,
-} from "@/firebase/firebaseService";
-import { getDocs, orderBy, query, where } from "firebase/firestore";
+import { invoiceCollectionRef } from "@/firebase/firebaseService";
+import { getDocs, limit, orderBy, query, where } from "firebase/firestore";
 import { useState } from "react";
 
 export default function useGetCustomerInvoice() {
@@ -15,6 +12,7 @@ export default function useGetCustomerInvoice() {
 				invoiceCollectionRef,
 				where("customer_id", "==", id),
 				orderBy("created_at", "desc"),
+				limit(20),
 			);
 
 			const docSnap = await getDocs(getQuery);

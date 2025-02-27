@@ -25,10 +25,8 @@ export default function ReceivingCartItem({ cartItem, index }: Props) {
 
       <div className="space-y-2.5 flex-grow px-2">
         <div className="flex items-center justify-between flex-grow">
-          <p className={`text-lg`}>
-            {cartItem.product_name}
-            <p className="text-sm text-gray-500">(stock: {cartItem.stock})</p>
-          </p>
+          <p className={`text-lg`}>{cartItem.product_name}</p>
+          <p className="text-sm text-gray-500">(stock: {cartItem.stock})</p>
 
           <Button
             onClick={() => remove(index)}

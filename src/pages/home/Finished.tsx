@@ -1,25 +1,13 @@
 import { Button } from "@/components/ui";
-import { myGetDoc } from "@/firebase/firebaseService";
 import { useCheckoutContext } from "@/stores/CheckoutContext";
-import { convertFirestoreTimestampToString } from "@/utils/appHelper";
-import { generateInvoiceHtmnl } from "@/utils/generateInvoceHtml";
 import { HomeIcon, PrinterIcon } from "@heroicons/react/24/outline";
-// import { HomeIcon, PrinterIcon } from "react-native-heroicons/outline";
 
 export default function FinishedPage() {
   const { newInvoiceId } = useCheckoutContext();
 
   const handlePrint = async () => {
-    window.print()
+    window.print();
     if (!newInvoiceId.current) return;
-
-    // const docSnap = await myGetDoc({
-    //   collection: "Invoices",
-    //   id: newInvoiceId.current,
-    // });
-    // newInvoiceId.current = "";
-
-    // const invoice = { ...docSnap.data(), id: docSnap.id } as Invoice;
   };
 
   return (

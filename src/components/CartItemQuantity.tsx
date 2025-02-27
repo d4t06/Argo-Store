@@ -1,5 +1,4 @@
 import { useCartContext } from "@/stores/CartContext";
-import { moneyFormat } from "@/utils/moneyFormat";
 import { MinusIcon, PlusIcon } from "@heroicons/react/16/solid";
 
 type Props = {

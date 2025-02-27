@@ -6,10 +6,11 @@ import {
   Navigate,
 } from "react-router";
 import { protectedRoutes, publicRoutes } from "./routes";
-import { Loading, NoResult } from "./components/ui";
+import { Loading } from "./components/ui";
 import DefaultLayout from "./layouts/DefaultLayout";
 import usePersistAuth from "./hooks/usePersistAuth";
 import NotFoundPage from "./pages/NotFound";
+// import useBrowserHistory from "./hooks/useBrowserHistory";
 
 function RequireAuth() {
   const { user, loading } = usePersistAuth();

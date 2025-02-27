@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useMemo, useRef, useState } from "react";
+import { createContext, ReactNode, useContext, useRef, useState } from "react";
 
 function useProducts() {
   const [products, setProducts] = useState<Product[]>([]);

@@ -81,6 +81,7 @@ export default function CustomerListModal({ closeModal }: Props) {
           userEmail={user.email}
           afterSubmit={afterSubmit}
           closeModal={closeAddCustomerModal}
+          customerName={rest.value}
         />
       </Modal>
     </>

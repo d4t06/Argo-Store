@@ -1,23 +1,19 @@
-// import { Platform } from "react-native";
-
-// import * as FileSystem from "expo-file-system";
-// import * as IntentLauncher from "expo-intent-launcher";
+//@ts-ignore
+import html2pdf from "html2pdf.js";
 
 export default function usePrinter() {
   const print = async (content: string) => {
     try {
-      window.print();
-
-      // return;
-      // if (Platform.OS === "ios") {
-      // } else {
-      //   const result = await FileSystem.getContentUriAsync(uri);
-      //   IntentLauncher.startActivityAsync("android.intent.action.VIEW", {
-      //     data: result,
-      //     flags: 1,
-      //     type: "application/pdf",
-      //   });
-      // }
+      html2pdf()
+        .set({
+          image: { type: "jpeg", quality: 1 },
+          margin: 20,
+          jsPDF: {
+            format: "a5",
+          },
+        })
+        .from(content)
+        .save();
     } catch (error) {
       console.log(error);
       alert("Error when printing");

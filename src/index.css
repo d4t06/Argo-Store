@@ -1,15 +1,32 @@
-@import "tailwindcss";
-@config "../tailwind.config.js";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
+@layer base {
+  :root {
   --color-xanh-400: #cee9b6;
   --color-xanh-500: #5a9e87;
+  }
+}
+
+body {
+  overflow: hidden;
 }
 
 button[disabled],
 .disabled {
   pointer-events: none;
   opacity: 0.6;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 svg {

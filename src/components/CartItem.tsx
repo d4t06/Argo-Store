@@ -53,10 +53,8 @@ export default function OrderCartItem({ cartItem, index }: Props) {
 
 			<div className="pl-2 flex-grow">
 				<div className="flex items-center justify-between flex-grow">
-					<p className={`text-lg`}>
-						{cartItem.product_name}
-						<p className="text-sm text-gray-500">(stock: {cartItem.stock})</p>
-					</p>
+					<p className={`text-lg`}>{cartItem.product_name}</p>
+					<p className="text-sm text-gray-500">(stock: {cartItem.stock})</p>
 
 					<Button
 						onClick={() => remove(index)}

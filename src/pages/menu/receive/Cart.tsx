@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import ReceivingCartItem from "@/components/ReceivingCartItem";
 import { Button, Frame, Label, NoResult } from "@/components/ui";
 import useCheckoutReceiving from "@/hooks/useCheckoutReceice";
@@ -14,6 +15,8 @@ export default function ReceivingCartPage() {
 
   return (
     <>
+      <Header title="Receive cart" />
+
       <div className="overflow-auto pb-[90px]">
         <div className="space-y-4">
           <div className="space-y-1">

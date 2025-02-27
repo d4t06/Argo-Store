@@ -19,6 +19,7 @@ type Edit = {
 type Add = {
 	type: "add";
 	userEmail: string;
+	customerName?: string;
 };
 
 const initCustomer = (props: Add | Edit) => {
@@ -29,6 +30,7 @@ const initCustomer = (props: Add | Edit) => {
 
 	return initCustomerObject({
 		user_email: props.userEmail,
+		customer_name: props.customerName,
 	});
 };
 
@@ -98,7 +100,7 @@ export default function AddCustomerModal({
 		<>
 			<ModalHeader closeModal={closeModal} title={title} />
 
-			<div className="space-y-3">
+			<div className="space-y-3 pb-[40%] overflow-auto">
 				<div className={classes.inputGroup}>
 					<label className={classes.label}>Customer name:</label>
 					<Input

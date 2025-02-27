@@ -14,10 +14,12 @@ export default function useConfirmReceiving() {
   const placeOrder = async () => {
     if (!receiving) return;
 
+    console.log('run here')
+
     try {
       setIsFetching(true);
 
-      const id = await myAddDoc({
+      await myAddDoc({
         collection: receiveCollectionRef,
         data: receiving,
       });

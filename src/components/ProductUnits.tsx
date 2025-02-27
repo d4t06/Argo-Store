@@ -24,7 +24,7 @@ export default function ProductUnits() {
   if (!currentProductData) return;
 
   return (
-    <div className="space-y-1">
+    <div className="space-y-2">
       <div className="flex justify-between">
         <Label icon={<CurrencyDollarIcon className="w-6" />} title="Unit" />
 
@@ -40,7 +40,7 @@ export default function ProductUnits() {
 
       <Frame>
         {currentProductData.product.units.length ? (
-          <div className="flex-row flex-wrap -mt-1 -mx-1">
+          <div className="flex flex-wrap -mt-1 -mx-1">
             {currentProductData.product.units.map((pU, i) => (
               <div className="w-1/2 h-full px-1 mt-2" key={i}>
                 <ProductUnitItem productUnit={pU} index={i} />

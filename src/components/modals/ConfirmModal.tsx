@@ -22,11 +22,11 @@ export default function ConfirmModal({
       </div>
       {!!desc && <p className="font-semibold text-lg text-red-500">{desc}</p>}
 
-      <div className="flex-row gap-4 mt-5">
+      <div className="flex-row mt-5">
         <Button onClick={close} color={"second"}>
           <p className="text-[#1f1f1f]">Close</p>
         </Button>
-        <Button loading={loading} onClick={callback}>
+        <Button className="ml-2" loading={loading} onClick={callback}>
           <p className="text-white">Yes, Please</p>
         </Button>
       </div>

@@ -1,6 +1,5 @@
 import { useAuth } from "@/stores/AuthContext";
 import { useReceivingCartContext } from "@/stores/local/ReceivingCartContext";
-import { fixedNumber } from "@/utils/moneyFormat";
 import { serverTimestamp } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
@@ -16,14 +15,12 @@ export default function useCheckoutReceiving() {
     const receivingItems: ReceivingItem[] = [];
 
     cartItems.forEach((c) => {
-      const totalPrice = c.quantity * c.price;
-
       const item: ReceivingItem = {
         product_name: c.product_name,
         product_image_url: c.image_url,
         product_id: c.id,
         quantity: c.quantity,
-        price: fixedNumber(totalPrice),
+        price: c.price,
       };
 
       receivingItems.push(item);
@@ -31,7 +28,7 @@ export default function useCheckoutReceiving() {
 
     const totalPrice = receivingItems.reduce(
       (prev, cur) => prev + cur.price * cur.quantity,
-      0
+      0,
     );
 
     const receiving: ReceivingSchema = {

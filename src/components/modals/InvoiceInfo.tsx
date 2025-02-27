@@ -5,18 +5,13 @@ import ModalHeader from "../ui/ModalHeader";
 import CheckoutInvoiceItem from "../CheckoutInvoiceItem";
 import { Button } from "../ui";
 import { PrinterIcon } from "@heroicons/react/24/outline";
-import usePrinter from "@/hooks/usePrinter";
 
 type Props = {
   invoice: Invoice;
   closeModal: () => void;
 };
 export default function InvoiceInfoModal({ invoice, closeModal }: Props) {
-  const printer = usePrinter();
-
-  const handlePrint = async () => {
-    await printer("asdfsdf");
-  };
+  const handlePrint = async () => {};
 
   return (
     <>

@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import Frame from "@/components/ui/Frame";
 import useGetInvoice from "@/hooks/useGetInvoices";
 import { useNavigate } from "react-router-dom";
+import Header from "@/components/Header";
+import { ArrowRightIcon } from "@heroicons/react/16/solid";
 
 export default function MenuInvoicePage() {
   const {
@@ -21,7 +23,7 @@ export default function MenuInvoicePage() {
 
   const handleNavigate = (invoice: Invoice) => {
     setCurrentInvoiceId(invoice.id);
-    navigator(`/menu/invoices/${invoice.id}`);
+    navigator(`/menu/invoice/${invoice.id}`);
   };
 
   useEffect(() => {
@@ -34,31 +36,37 @@ export default function MenuInvoicePage() {
 
   return (
     <>
+      <Header title="Invoice" />
+
       {isFetching ? (
         <Loading />
       ) : (
         <>
           {invoices.length ? (
-            <div className="space-y-2 overflow-auto">
+            <div className="space-y-2 overflow-auto pb-20">
               {invoices.map((invoice, i) => (
                 <Frame
                   onClick={() => handleNavigate(invoice)}
                   key={i}
-                  className="mb-2"
+                  className="mb-2 flex items-center justify-between"
                 >
-                  <p className="text-[#333]">
-                    {convertFirestoreTimestampToString(invoice.created_at)}
-                  </p>
-                  <p className="text-xl">{invoice.customer_name}</p>
-                  <p
-                    className={`text-xl ${
-                      invoice.payment === "tien-mat"
-                        ? "text-xanh-500"
-                        : "text-red-500"
-                    } `}
-                  >
-                    {moneyFormat(invoice.total_price)}
-                  </p>
+                  <div>
+                    <p className="text-[#333]">
+                      {convertFirestoreTimestampToString(invoice.created_at)}
+                    </p>
+                    <p className="text-xl">{invoice.customer_name}</p>
+                    <p
+                      className={`text-xl ${
+                        invoice.payment === "tien-mat"
+                          ? "text-xanh-500"
+                          : "text-red-500"
+                      } `}
+                    >
+                      {moneyFormat(invoice.total_price)}
+                    </p>
+                  </div>
+
+                  <ArrowRightIcon className="w-6" />
                 </Frame>
               ))}
             </div>

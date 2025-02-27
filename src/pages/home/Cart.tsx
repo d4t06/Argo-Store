@@ -13,6 +13,7 @@ import useCheckoutOrder from "@/hooks/useCheckoutOrder";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/16/solid";
 import OrderCartItem from "@/components/CartItem";
 import OrderCustomerSelect from "@/components/OrderCusomterSelect";
+import Header from "@/components/Header";
 
 export default function CartPage() {
 	const { cartItems } = useCartContext();
@@ -31,6 +32,8 @@ export default function CartPage() {
 
 	return (
 		<>
+			<Header title="Cart" />
+
 			<div className="space-y-4 flex-1 pb-[100px] overflow-auto">
 				<div className="space-y-1">
 					<Label title="Products" icon={<ShoppingBagIcon className="w-6" />} />

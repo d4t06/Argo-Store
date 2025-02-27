@@ -1,4 +1,5 @@
 import BubbleCartBtn from "@/components/BubbleCartBtn";
+import Header from "@/components/Header";
 import ProductListItem from "@/components/ProductListItem";
 import ProductSearchBar from "@/components/ProductSearchBar";
 import { Frame, Loading } from "@/components/ui";
@@ -24,6 +25,7 @@ export default function Home() {
 
   return (
     <>
+      <Header title="Home" />
       <ProductSearchBar {...rest} />
 
       {isFetching ? (
@@ -31,7 +33,7 @@ export default function Home() {
       ) : (
         <>
           {_products.length ? (
-            <div className="mt-5 overflow-auto space-y-2">
+            <div className="mt-3 overflow-auto space-y-2.5 pb-20">
               {_products.map((p, index) => {
                 const selected = cartItems.find((_p) => _p.id === p.id);
 
@@ -48,7 +50,7 @@ export default function Home() {
         </>
       )}
 
-        <BubbleCartBtn count={cartItems.length} href="/cart" />
+      <BubbleCartBtn count={cartItems.length} href="/cart" />
     </>
   );
 }

@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import MenuBtn from "@/components/MenuBtn";
 import ReceivingItem from "@/components/ReceivingItem";
 import { Button, Loading, NoResult } from "@/components/ui";
@@ -25,6 +26,8 @@ export default function ReceivesScreen() {
 
   return (
     <>
+      <Header title="Receive" />
+
       {isFetching ? (
         <Loading />
       ) : (

@@ -148,7 +148,7 @@ export default function Signup() {
           <div className="md:text-right">
             <Button
               disabled={!ableToSubmit}
-              className="w-full md:w-auto mt-5"
+              className="w-full justify-center md:w-auto mt-5"
               type="submit"
             >
               Signup

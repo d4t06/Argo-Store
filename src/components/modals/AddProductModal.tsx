@@ -103,7 +103,7 @@ export default function AddProductModal({
     <>
       <ModalHeader title="Add product" closeModal={closeModal} />
 
-      <div className="space-y-3 flex-1 overflow-auto">
+      <div className="space-y-3 overflow-auto pb-[50%]">
         <div className="w-[160px] h-[160px] bg-[#f1f1f1] rounded-lg"></div>
 
         <div className={classes.inputGroup}>

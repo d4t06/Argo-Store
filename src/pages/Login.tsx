@@ -95,7 +95,7 @@ export default function Login() {
             <Button
               loading={isFetching}
               disabled={!ableToSubmit}
-              className="w-full md:w-auto mt-5"
+              className="w-full justify-center md:w-auto mt-5"
               type="submit"
             >
               Login

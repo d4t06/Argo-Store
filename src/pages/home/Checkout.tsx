@@ -1,4 +1,5 @@
 import CheckoutInvoiceItem from "@/components/CheckoutInvoiceItem";
+import Header from "@/components/Header";
 import { Frame, Label, Button } from "@/components/ui";
 import NotFound from "@/components/ui/NoResult";
 import usePlaceOrder from "@/hooks/usePlaceOrder";
@@ -21,6 +22,8 @@ export default function CheckoutPage() {
 
 	return (
 		<>
+			<Header title="Checkout" />
+
 			<div className="flex-1 pb-10 overflow-auto">
 				<div className="space-y-4">
 					<div className="space-y-1">

@@ -1,6 +1,6 @@
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { cva, VariantProps } from "class-variance-authority";
-import { ReactNode } from "react";
+import { forwardRef, ReactNode, Ref } from "react";
 import { Link } from "react-router";
 
 const ButtonVariant = cva("inline-flex relative space-x-1 items-center z-0", {
@@ -18,7 +18,7 @@ const ButtonVariant = cva("inline-flex relative space-x-1 items-center z-0", {
       clear: "",
     },
     size: {
-      primary: "px-4.5 py-1.5",
+      primary: "px-5 py-1.5",
       clear: "",
     },
     fontWeight: {
@@ -57,22 +57,25 @@ interface Props extends VariantProps<typeof ButtonVariant> {
   children: ReactNode;
 }
 
-export default function Button({
-  onClick,
-  loading,
-  children,
-  border,
-  size,
-  color,
-  fontWeight,
-  type = "button",
-  variant,
-  disabled,
-  rounded,
-  className,
-  active,
-  href,
-}: Props) {
+function Button(
+  {
+    onClick,
+    loading,
+    children,
+    border,
+    size,
+    color,
+    fontWeight,
+    type = "button",
+    variant,
+    disabled,
+    rounded,
+    className,
+    active,
+    href,
+  }: Props,
+  ref: Ref<HTMLButtonElement>,
+) {
   const _disabled = disabled || loading;
 
   const activeClasses = "before:shadow-none translate-y-[2px]";
@@ -96,6 +99,7 @@ export default function Button({
         </Link>
       ) : (
         <button
+          ref={ref}
           type={type || "button"}
           onClick={onClick}
           disabled={_disabled}
@@ -114,3 +118,5 @@ export default function Button({
     </>
   );
 }
+
+export default forwardRef(Button);

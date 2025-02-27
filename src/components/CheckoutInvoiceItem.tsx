@@ -10,8 +10,8 @@ export default function CheckoutInvoiceItem({ invoiceItem }: Props) {
       <p className="text-lg font-[500]">{invoiceItem.product_name}</p>
       <div className="flex">
         <p className="text-[#888]">
-          {invoiceItem.quantity} x{" "}
-          <p className="">{moneyFormat(invoiceItem.price)}</p>
+          {invoiceItem.quantity} x <br />
+          <span className="">{moneyFormat(invoiceItem.price)}</span>
         </p>
         <p className="ml-auto text-[#888]">
           {moneyFormat(invoiceItem.quantity * invoiceItem.price)}

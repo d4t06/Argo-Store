@@ -24,5 +24,5 @@ createRoot(document.getElementById("root")!).render(
         </CartProvider>
       </CustomerProvider>
     </ProductsProvider>
-  </StrictMode>
+  </StrictMode>,
 );

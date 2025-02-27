@@ -1,8 +1,9 @@
-import CheckoutInvoiceItem from "@/components/CheckoutInvoiceItem";
 import CheckoutReceivingItem from "@/components/CheckoutReceivingItem";
+import Header from "@/components/Header";
 import { Frame, Label, Button } from "@/components/ui";
 import NotFound from "@/components/ui/NoResult";
-import usePlaceOrder from "@/hooks/usePlaceOrder";
+import useConfirmReceiving from "@/hooks/useConfirmReceice";
+import NotFoundPage from "@/pages/NotFound";
 import { useReceivingCartContext } from "@/stores/local/ReceivingCartContext";
 import { moneyFormat } from "@/utils/moneyFormat";
 import { ChevronLeftIcon } from "@heroicons/react/16/solid";
@@ -11,12 +12,14 @@ import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 export default function ReceivingCheckoutPage() {
   const { receiving } = useReceivingCartContext();
 
-  const { placeOrder, isFetching } = usePlaceOrder();
+  const { placeOrder, isFetching } = useConfirmReceiving();
 
-  if (!receiving) return <NotFound />;
+  if (!receiving) return <NotFoundPage />;
 
   return (
     <>
+      <Header title="Receive checkout" />
+
       <div className="flex-1 pb-10 overflow-auto">
         <div className="space-y-1">
           <Label title="Products" icon={<ShoppingBagIcon className="w-6" />} />
@@ -28,7 +31,9 @@ export default function ReceivingCheckoutPage() {
             </div>
             <div className="mt-5">
               <p>Total:</p>
-              <p className="text-2xl font-[500]">{moneyFormat(receiving.total_price)}</p>
+              <p className="text-2xl font-[500]">
+                {moneyFormat(receiving.total_price)}
+              </p>
             </div>
           </Frame>
         </div>

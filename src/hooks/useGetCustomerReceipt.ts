@@ -1,5 +1,5 @@
 import { customerReceiptCollectionRef } from "@/firebase/firebaseService";
-import { getDocs, orderBy, query, where } from "firebase/firestore";
+import { getDocs, limit, orderBy, query, where } from "firebase/firestore";
 import { useState } from "react";
 
 export default function useGetCustomerReceipt() {
@@ -12,14 +12,15 @@ export default function useGetCustomerReceipt() {
       const getQuery = query(
         customerReceiptCollectionRef,
         where("customer_id", "==", id),
-        orderBy("created_at", "desc")
+        orderBy("created_at", "desc"),
+        limit(20),
       );
 
       const docSnap = await getDocs(getQuery);
 
       if (docSnap.docs) {
         const receipts = docSnap.docs.map(
-          (doc) => ({ ...doc.data(), id: doc.id } as Receipt)
+          (doc) => ({ ...doc.data(), id: doc.id }) as Receipt,
         );
 
         setReceipts(receipts);

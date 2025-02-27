@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import ProductInfo from "@/components/ProductIInfo";
 import ProductUnits from "@/components/ProductUnits";
 import { NoResult } from "@/components/ui";
@@ -9,9 +10,13 @@ export default function ProductDetailPage() {
   if (!currentProductData) return <NoResult />;
 
   return (
-    <div className="space-y-4 overflow-auto pb-20">
-      <ProductInfo />
-      <ProductUnits />
-    </div>
+    <>
+      <Header title="Product detail" />
+
+      <div className="space-y-4 overflow-auto pb-20">
+        <ProductInfo />
+        <ProductUnits />
+      </div>
+    </>
   );
 }

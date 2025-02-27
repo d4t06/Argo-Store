@@ -26,7 +26,7 @@ export default function AddProductBtn() {
         <AddProductModal
           variant="add"
           email={user.email}
-          cloesModal={() => modalRef.current?.close()}
+          closeModal={() => modalRef.current?.close()}
         />
       </Modal>
     </>

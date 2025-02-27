@@ -6,6 +6,7 @@ import Label from "@/components/ui/Label";
 import { UserIcon } from "@heroicons/react/24/outline";
 import CustomerReceipt from "@/components/CustomerReceipt";
 import CustomerInvoice from "@/components/CustomerInvoice";
+import Header from "@/components/Header";
 
 export default function CustomerDetailPage() {
   const { currentCustomerData } = useCustomerContext();
@@ -20,6 +21,8 @@ export default function CustomerDetailPage() {
 
   return (
     <>
+      <Header title="Customer detail" />
+
       <div className="overflow-auto pb-20">
         <div className="space-y-4">
           <div className="space-y-1">
@@ -64,9 +67,9 @@ export default function CustomerDetailPage() {
 }
 
 // export default function CustomerDetailScreen() {
-// 	return (
-// 		<ReceiptProvider>
-// 			<Content />
-// 		</ReceiptProvider>
-// 	);
+//  return (
+//    <ReceiptProvider>
+//      <Content />
+//    </ReceiptProvider>
+//  );
 // }

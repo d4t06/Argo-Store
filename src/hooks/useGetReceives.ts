@@ -17,14 +17,14 @@ export default function useGetReceives() {
       const getQuery = query(
         receiveCollectionRef,
         where("user_email", "==", user.email),
-        orderBy("created_at", "desc")
+        orderBy("created_at", "desc"),
       );
 
       const docSnap = await getDocs(getQuery);
 
       if (docSnap.docs) {
         const items = docSnap.docs.map(
-          (doc) => ({ ...doc.data(), id: doc.id } as Receiving)
+          (doc) => ({ ...doc.data(), id: doc.id }) as Receiving,
         );
 
         setReceives(items);

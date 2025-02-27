@@ -1,10 +1,4 @@
-import {
-  deleteObject,
-  getDownloadURL,
-  ref,
-  uploadBytes,
-} from "firebase/storage";
-import { db, store } from "./firebase";
+import { db } from "./firebase";
 import {
   addDoc,
   collection,
@@ -90,73 +84,4 @@ export const mySetDoc = async <T>({
   if (isDev) console.log(msg ?? ">>> api: set doc");
 
   return await setDoc(doc(db, collection, id), { ...data }, { merge: true });
-};
-
-export const uploadFile = async ({
-  file,
-  folder,
-  namePrefix,
-  msg,
-}: {
-  file: File;
-  folder: "/images/" | "/songs/";
-  namePrefix: string;
-  msg?: string;
-}) => {
-  if (isDev) console.log(msg ?? ">>> api: upload file");
-  const start = Date.now();
-
-  // define ref
-  const fileName =
-    namePrefix.replace("@gmail.com", "") +
-    "_" +
-    file.name.replaceAll(" ", "").toLowerCase();
-  const fileRef = ref(store, `${folder + fileName}`);
-
-  const fileRes = await uploadBytes(fileRef, file);
-  const fileURL = await getDownloadURL(fileRes.ref);
-  const consuming = (Date.now() - start) / 1000;
-  if (isDev) console.log(">>> api: upload file finished after", consuming);
-
-  return { fileURL, filePath: fileRes.metadata.fullPath };
-};
-
-export const uploadBlob = async ({
-  blob,
-  folder,
-  songId,
-  msg,
-}: {
-  blob: Blob;
-  folder: "/images/" | "/songs/";
-  songId: string;
-  msg?: string;
-}) => {
-  if (isDev) console.log(msg ?? "upload blob");
-  const start = Date.now();
-
-  // define ref
-  // try {
-  const fileName = songId + "_stock";
-  const fileRef = ref(store, `${folder + fileName}`);
-  const fileRes = await uploadBytes(fileRef, blob);
-  const fileURL = await getDownloadURL(fileRes.ref);
-
-  const consuming = (Date.now() - start) / 1000;
-  if (isDev) console.log(">>> api: upload blob finished after", consuming);
-
-  return { fileURL, filePath: fileRes.metadata.fullPath };
-};
-
-export const deleteFile = async ({
-  filePath,
-  msg,
-}: {
-  filePath: string;
-  msg?: string;
-}) => {
-  if (isDev) console.log(msg ?? ">>> api: delete file");
-
-  const fileRef = ref(store, filePath);
-  await deleteObject(fileRef);
 };

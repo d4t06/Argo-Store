@@ -78,7 +78,7 @@ export default function AddProductUnitModal({ product, ...props }: Props) {
     <>
       <ModalHeader title="Add unit" closeModal={props.closeModal} />
 
-      <div className="space-y-3">
+      <div className="space-y-3 pb-[50%] overflow-auto">
         <div className={classes.inputGroup}>
           <p className={classes.label}>Name:</p>
           <Input
