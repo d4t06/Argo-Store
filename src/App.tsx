@@ -9,6 +9,7 @@ import { protectedRoutes, publicRoutes } from "./routes";
 import { Loading, NoResult } from "./components/ui";
 import DefaultLayout from "./layouts/DefaultLayout";
 import usePersistAuth from "./hooks/usePersistAuth";
+import NotFoundPage from "./pages/NotFound";
 
 function RequireAuth() {
   const { user, loading } = usePersistAuth();
@@ -25,7 +26,7 @@ export default function App() {
     <>
       <Router basename="/">
         <Routes>
-          <Route path="*" element={<NoResult />} />
+          <Route path="*" element={<NotFoundPage />} />
 
           {publicRoutes.map((route, index) => {
             const Page = route.component;

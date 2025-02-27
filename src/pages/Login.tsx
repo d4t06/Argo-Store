@@ -45,7 +45,7 @@ export default function Login() {
     }
   };
 
-  if (user) return <Navigate to={"/home"} />;
+  if (user) return <Navigate to={"/"} />;
 
   return (
     <div className={loginClasses.container}>

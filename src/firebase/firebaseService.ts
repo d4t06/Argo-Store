@@ -1,4 +1,9 @@
-import { deleteObject, getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import {
+  deleteObject,
+  getDownloadURL,
+  ref,
+  uploadBytes,
+} from "firebase/storage";
 import { db, store } from "./firebase";
 import {
   addDoc,
@@ -24,7 +29,7 @@ export const productCollectionRef = collection(db, "Products");
 export const userCollectionRef = collection(db, "Users");
 export const invoiceCollectionRef = collection(db, "Invoices");
 export const customerCollectionRef = collection(db, "Customers");
-export const warehouseEntryCollectionRef = collection(db, "Warehouse_Entries");
+export const receiveCollectionRef = collection(db, "Warehouse_Entries");
 export const customerReceiptCollectionRef = collection(db, "Receipts");
 
 export const myDeleteDoc = async ({
@@ -67,7 +72,7 @@ export const myAddDoc = async ({
 
   const docRef = await addDoc(collection, data);
 
-  docRef.firestore
+  docRef.firestore;
   return docRef.id;
 };
 

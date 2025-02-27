@@ -5,7 +5,7 @@ const inputVariants = cva("w-full", {
   variants: {
     variant: {
       primary:
-        "bg-white border border-black/10 placeholder:[#808080] text-[16px] outline-none py-1.5 px-2",
+        "bg-white border border-black/10 placeholder:[#888] text-[16px] outline-none py-1.5 px-2",
       clear: "",
     },
     rounded: {

@@ -16,7 +16,7 @@ export default function CheckoutPage() {
 		return <NotFound>Something went wrong, ¯\_(ツ)_/¯</NotFound>;
 
 	const classes = {
-		label: "text-[#808080] text-[16px]",
+		label: "text-[#888] text-[16px]",
 	};
 
 	return (

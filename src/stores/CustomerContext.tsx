@@ -1,40 +1,38 @@
-import { createContext, ReactNode, useContext, useMemo, useRef, useState } from "react";
+import { createContext, ReactNode, useContext, useRef, useState } from "react";
 
 function useCustomer() {
-	const [customers, setCustomers] = useState<Customer[]>([]);
+  const [customers, setCustomers] = useState<Customer[]>([]);
 
-	const [currentCustomerId, setCurrentCustomerId] = useState("");
+  const [currentCustomerData, setCurrentCustomerData] = useState<
+    { customer: Customer; index: number } | undefined
+  >();
+  const shouldFetchCustomer = useRef(true);
 
-	const shouldFetchCustomer = useRef(true);
-
-	const currentCustomerData = useMemo(() => {
-		const index = customers.findIndex((p) => p.id === currentCustomerId);
-
-		if (index === -1) return;
-		else return { customer: customers[index], index };
-	}, [customers, currentCustomerId]);
-
-	return {
-		customers,
-		setCustomers,
-		currentCustomerData,
-		shouldFetchCustomer,
-		setCurrentCustomerId,
-	};
+  return {
+    customers,
+    setCustomers,
+    currentCustomerData,
+    shouldFetchCustomer,
+    setCurrentCustomerData,
+  };
 }
 
 type ContextType = ReturnType<typeof useCustomer>;
 
 const Context = createContext<ContextType | null>(null);
 
-export default function CustomerProvider({ children }: { children: ReactNode }) {
-	return <Context.Provider value={useCustomer()}>{children}</Context.Provider>;
+export default function CustomerProvider({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  return <Context.Provider value={useCustomer()}>{children}</Context.Provider>;
 }
 
 export const useCustomerContext = () => {
-	const ct = useContext(Context);
+  const ct = useContext(Context);
 
-	if (!ct) throw new Error("Customer context is not provided");
+  if (!ct) throw new Error("Customer context is not provided");
 
-	return ct;
+  return ct;
 };

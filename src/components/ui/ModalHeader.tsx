@@ -10,7 +10,7 @@ export default function ModalHeader({
 }) {
   return (
     <div className={`flex justify-between mb-5`}>
-      <p className="text-xl font-bold">{title}</p>
+      <p className="text-xl font-[500]">{title}</p>
       <Button
         color={"second"}
         size={"clear"}

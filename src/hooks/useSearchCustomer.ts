@@ -3,7 +3,7 @@ import useDebounce from "./useDebounced";
 import { useCustomerContext } from "@/stores/CustomerContext";
 
 export default function useSearchCustomer() {
-  const { customers } = useCustomerContext();
+  const { customers, setCurrentCustomerData } = useCustomerContext();
 
   const [value, setValue] = useState("");
 
@@ -17,5 +17,5 @@ export default function useSearchCustomer() {
     [debouncedValue, customers],
   );
 
-  return { value, setValue, _customers };
+  return { value, setValue, _customers, setCurrentCustomerData };
 }

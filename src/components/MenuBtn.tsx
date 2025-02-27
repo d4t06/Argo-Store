@@ -14,7 +14,7 @@ export default function MenuBtn() {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const classes = {
-		linkItem: "inline-flex space-x-1 py-1.5",
+		linkItem: "inline-flex space-x-1 py-1.5 hover:text-xanh-500",
 	};
 
 	return (

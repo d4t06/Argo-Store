@@ -5,7 +5,7 @@ import { getDocs, query, where } from "firebase/firestore";
 import { useState } from "react";
 
 export default function useGetProducts() {
-	const { products, setProducts, shouldFetchData } = useProductContext();
+	const { products, setProducts, shouldFetchData, setCurrentProductData } = useProductContext();
 	const { user } = useAuth();
 
 	const [isFetching, setIsFetching] = useState(true);
@@ -35,5 +35,5 @@ export default function useGetProducts() {
 		}
 	};
 
-	return { api, isFetching, setIsFetching, products, shouldFetchData };
+	return { api, isFetching, setIsFetching,setCurrentProductData, products, shouldFetchData };
 }

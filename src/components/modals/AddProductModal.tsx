@@ -6,7 +6,7 @@ import ModalHeader from "../ui/ModalHeader";
 import { CheckIcon } from "@heroicons/react/24/outline";
 
 type Base = {
-  cloesModal: () => void;
+  closeModal: () => void;
 };
 
 type AddProduct = {
@@ -34,7 +34,7 @@ const runInitProductData = (props: Props) => {
 };
 
 export default function AddProductModal({
-  cloesModal,
+  closeModal,
   ...props
 }: Props & Base) {
   const [productData, setProductData] = useState<ProductSchema>(() =>
@@ -70,7 +70,7 @@ export default function AddProductModal({
     setProductData({ ...productData, [field]: value });
   };
 
-  const hanldeProductAction = async () => {
+  const handleProductAction = async () => {
     try {
       switch (props.variant) {
         case "add":
@@ -101,7 +101,7 @@ export default function AddProductModal({
 
   return (
     <>
-      <ModalHeader title="Add product" closeModal={cloesModal} />
+      <ModalHeader title="Add product" closeModal={closeModal} />
 
       <div className="space-y-3 flex-1 overflow-auto">
         <div className="w-[160px] h-[160px] bg-[#f1f1f1] rounded-lg"></div>
@@ -141,7 +141,7 @@ export default function AddProductModal({
         <Button
           disabled={!ableToSubmit}
           loading={isFetching}
-          onClick={hanldeProductAction}
+          onClick={handleProductAction}
         >
           <CheckIcon className="w-6" />
           <p className="text-white">Save</p>

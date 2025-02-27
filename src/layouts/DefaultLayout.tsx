@@ -6,9 +6,8 @@ export default function DefaultLayout({ children }: { children: ReactNode }) {
     <div className="fixed inset-0">
       <div className="container relative py-3 flex flex-col h-full max-w-[800px]">
         {children}
+        <MenuBtn />
       </div>
-
-      <MenuBtn />
     </div>
   );
 }

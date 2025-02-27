@@ -11,7 +11,7 @@ export default function NotFound({
   className?: string;
 }) {
   return (
-    <div className={`flex-1 ${className}`}>
+    <div className={`${className}`}>
       <img className="m-auto" src={simon_empty} alt="" />
 
       {!less && <p className="text-[16px] text-center">No result found, ¯\_(ツ)_/¯</p>}

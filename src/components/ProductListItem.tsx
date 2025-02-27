@@ -27,14 +27,14 @@ export default function ProductListItem({ product, selected }: Props) {
           {product.product_name}
         </p>
 
-        <p className={`text-sm text-[#808080]`}>
+        <p className={`text-sm text-[#888]`}>
           Stock: {product.stock}
         </p>
       </div>
       <div className="ml-auto flex-shrink-0 gap-1">
         {product.units.map((u, i) => (
           <div key={i}>
-            <p className="text-[#808080]">{u.unit_name}:</p>
+            <p className="text-[#888]">{u.unit_name}:</p>
             <p className="text-red-500">
               {moneyFormat(u.price)}
             </p>
