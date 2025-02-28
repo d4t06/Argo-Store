@@ -1,5 +1,4 @@
 import Frame from "@/components/ui/Frame";
-import NotFound from "@/components/ui/NoResult";
 import { useCustomerContext } from "@/stores/CustomerContext";
 import { moneyFormat } from "@/utils/moneyFormat";
 import Label from "@/components/ui/Label";
@@ -7,11 +6,13 @@ import { UserIcon } from "@heroicons/react/24/outline";
 import CustomerReceipt from "@/components/CustomerReceipt";
 import CustomerInvoice from "@/components/CustomerInvoice";
 import Header from "@/components/Header";
+import MenuBtn from "@/components/MenuBtn";
+import NotFoundPage from "@/pages/NotFound";
 
 export default function CustomerDetailPage() {
   const { currentCustomerData } = useCustomerContext();
 
-  if (!currentCustomerData) return <NotFound />;
+  if (!currentCustomerData) return <NotFoundPage />;
 
   const { customer } = currentCustomerData;
 
@@ -22,6 +23,7 @@ export default function CustomerDetailPage() {
   return (
     <>
       <Header title="Customer detail" />
+      <MenuBtn />
 
       <div className="overflow-auto pb-20">
         <div className="space-y-4">

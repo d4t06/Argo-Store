@@ -1,11 +1,12 @@
 import { ReactNode } from "react";
-import DefaultLayout from "./DefaultLayout";
 import InvoiceProvider from "@/stores/local/InvoicesContext";
+import MenuBtn from "@/components/MenuBtn";
 
 export default function InvoiceLayout({ children }: { children: ReactNode }) {
 	return (
-		<DefaultLayout>
-			<InvoiceProvider>{children}</InvoiceProvider>
-		</DefaultLayout>
+		<InvoiceProvider>
+			{children}
+			<MenuBtn />
+		</InvoiceProvider>
 	);
 }

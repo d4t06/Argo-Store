@@ -23,18 +23,20 @@ export default function CartPage() {
 	const { checkout } = useCheckoutOrder();
 
 	useEffect(() => {
-		const validCartItem = !cartItems.find(
-			(i) => i.stock < i.total_quantity || i.total <= 0,
-		);
+		const validCartItem =
+			!!cartItems.length &&
+			!cartItems.find((i) => i.stock < i.total_quantity || i.total <= 0);
 
-		setAbleToSubmit(validCartItem && !!customer);
-	}, [cartItems]);
+		const isValidToCheckout = validCartItem && !!customer;
+
+		setAbleToSubmit(isValidToCheckout);
+	}, [cartItems, customer]);
 
 	return (
 		<>
 			<Header title="Cart" />
 
-			<div className="space-y-4 flex-1 pb-[100px] overflow-auto">
+			<div className="space-y-4 flex-1 pb-[80px] overflow-auto">
 				<div className="space-y-1">
 					<Label title="Products" icon={<ShoppingBagIcon className="w-6" />} />
 					<Frame className="space-y-4">

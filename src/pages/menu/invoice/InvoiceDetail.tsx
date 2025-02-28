@@ -4,7 +4,7 @@ import { moneyFormat } from "@/utils/moneyFormat";
 import usePrinter from "@/hooks/usePrinter";
 import { generateInvoiceHtmnl } from "@/utils/generateInvoceHtml";
 import { useInvoiceContext } from "@/stores/local/InvoicesContext";
-import { Button, Frame, Label, NoResult } from "@/components/ui";
+import { Button, Frame, Label } from "@/components/ui";
 import {
   DocumentTextIcon,
   PrinterIcon,
@@ -12,6 +12,8 @@ import {
 } from "@heroicons/react/24/outline";
 import CheckoutInvoiceItem from "@/components/CheckoutInvoiceItem";
 import Header from "@/components/Header";
+import MenuBtn from "@/components/MenuBtn";
+import NotFoundPage from "@/pages/NotFound";
 
 export default function InvoiceDetailPage() {
   const { currentInvoiceData } = useInvoiceContext();
@@ -30,12 +32,14 @@ export default function InvoiceDetailPage() {
     printer(content);
   };
 
-  if (!currentInvoiceData) return <NoResult />;
+  if (!currentInvoiceData) return <NotFoundPage />;
+
   const { invoice } = currentInvoiceData;
 
   return (
     <>
       <Header title="Invoice detail" />
+      <MenuBtn />
 
       <div className="overflow-auto pb-20">
         <div className="space-y-4">

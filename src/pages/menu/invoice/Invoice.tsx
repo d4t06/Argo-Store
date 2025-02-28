@@ -8,6 +8,7 @@ import useGetInvoice from "@/hooks/useGetInvoices";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import { ArrowRightIcon } from "@heroicons/react/16/solid";
+import MenuBtn from "@/components/MenuBtn";
 
 export default function MenuInvoicePage() {
   const {
@@ -37,6 +38,7 @@ export default function MenuInvoicePage() {
   return (
     <>
       <Header title="Invoice" />
+      <MenuBtn />
 
       {isFetching ? (
         <Loading />

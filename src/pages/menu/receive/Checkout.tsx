@@ -1,7 +1,6 @@
 import CheckoutReceivingItem from "@/components/CheckoutReceivingItem";
 import Header from "@/components/Header";
 import { Frame, Label, Button } from "@/components/ui";
-import NotFound from "@/components/ui/NoResult";
 import useConfirmReceiving from "@/hooks/useConfirmReceice";
 import NotFoundPage from "@/pages/NotFound";
 import { useReceivingCartContext } from "@/stores/local/ReceivingCartContext";

@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { moneyFormat } from "@/utils/moneyFormat";
 import { Frame } from "@/components/ui";
 import Header from "@/components/Header";
+import MenuBtn from "@/components/MenuBtn";
 
 export default function MenuCustomerPage() {
   const { api, isFetching, setIsFetching, shouldFetchCustomer } =
@@ -33,6 +34,7 @@ export default function MenuCustomerPage() {
   return (
     <>
       <Header title="Customer" />
+      <MenuBtn />
 
       <CustomerSearchBar {...rest} />
       {isFetching ? (

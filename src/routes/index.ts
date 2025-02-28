@@ -1,5 +1,4 @@
 import AuthLayout from "@/layouts/AuthLayout";
-import CartLayout from "@/layouts/CartLayout";
 import InvoiceLayout from "@/layouts/InvoiveLayout";
 import ReceiveLayout from "@/layouts/ReceiveLayout";
 import CartPage from "@/pages/home/Cart";
@@ -18,6 +17,7 @@ import AddReceivingPage from "@/pages/menu/receive/Add";
 import ReceivingCartPage from "@/pages/menu/receive/Cart";
 import ReceivingCheckoutPage from "@/pages/menu/receive/Checkout";
 import MenuReceivePage from "@/pages/menu/receive/Receive";
+import SettingPage from "@/pages/menu/Setting";
 import Signup from "@/pages/Signup";
 
 const publicRoutes = [
@@ -37,47 +37,42 @@ const protectedRoutes = [
   {
     path: "/",
     component: Home,
-    layout: "",
   },
   {
     path: "/cart",
     component: CartPage,
-    layout: CartLayout,
   },
   {
     path: "/checkout",
     component: CheckoutPage,
-    layout: CartLayout,
   },
   {
     path: "/finished",
     component: FinishedPage,
-    layout: CartLayout,
+  },
+    {
+    path: "/menu/setting",
+    component: SettingPage,
   },
   {
     path: "/menu/product",
     component: MenuProductPage,
-    layout: "",
   },
   {
     path: "/menu/product/:id",
     component: ProductDetailPage,
-    layout: "",
   },
   {
     path: "/menu/customer",
     component: MenuCustomerPage,
-    layout: "",
   },
   {
     path: "/menu/customer/:id",
     component: CustomerDetailPage,
-    layout: "",
   },
   {
-    path: "/menu/customer:id/create-receive",
+    path: "/menu/customer/:id/create-receive",
     component: CreateReceiptPage,
-    layout: "",
   },
   {
     path: "/menu/invoice",

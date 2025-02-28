@@ -27,6 +27,14 @@ export default function ReceivesScreen() {
   return (
     <>
       <Header title="Receive" />
+      <MenuBtn />
+      <Button
+        href={"/menu/receive/add"}
+        size={"clear"}
+        className="!absolute p-2 bottom-7 right-5"
+      >
+        <PlusIcon className="w-6" />
+      </Button>
 
       {isFetching ? (
         <Loading />
@@ -43,16 +51,6 @@ export default function ReceivesScreen() {
           )}
         </>
       )}
-
-      <Button
-        href={"/menu/receive/add"}
-        size={"clear"}
-        className="!absolute p-2 bottom-7 right-5"
-      >
-        <PlusIcon className="w-6" />
-      </Button>
-
-      <MenuBtn />
     </>
   );
 }

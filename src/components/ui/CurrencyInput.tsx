@@ -10,7 +10,6 @@ export default function CurrencyInput({ value, setValue }: Props) {
   return (
     <div className="w-full">
       <Input
-        type="number"
         step={1000}
         min={0}
         placeholder="0"

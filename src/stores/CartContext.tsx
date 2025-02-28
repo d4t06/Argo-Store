@@ -106,14 +106,14 @@ function useCart() {
     setCartItems(items);
   };
 
-  const resetSelect = () => {
+  const resetCart = () => {
     setCartItems([]);
   };
 
   return {
     setCartItems,
     cartItems,
-    resetSelect,
+    resetCart,
     select,
     action,
     remove,

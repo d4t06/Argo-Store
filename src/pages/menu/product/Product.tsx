@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import simon from "@/assets/images/simon_empty.png";
 import Header from "@/components/Header";
+import MenuBtn from "@/components/MenuBtn";
 
 export default function MenuProductPage() {
   const { _products, ...rest } = useSearchProduct();
@@ -37,6 +38,7 @@ export default function MenuProductPage() {
   return (
     <>
       <Header title="Product" />
+      <MenuBtn />
 
       <ProductSearchBar {...rest} />
 

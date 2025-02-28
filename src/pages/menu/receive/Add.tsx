@@ -27,10 +27,11 @@ export default function AddReceivingPage() {
   return (
     <>
       <Header title="New receive" />
+      <ProductSearchBar {...rest} />
+      <MenuBtn />
+      <BubbleCartBtn count={cartItems.length} href="/menu/receive/cart" />
 
-      <div className="overflow-auto pb-20">
-        <ProductSearchBar {...rest} />
-
+      <>
         {isFetching ? (
           <Loading />
         ) : (
@@ -52,11 +53,7 @@ export default function AddReceivingPage() {
             )}
           </>
         )}
-
-        <BubbleCartBtn count={cartItems.length} href="/menu/receive/cart" />
-
-        <MenuBtn />
-      </div>
+      </>
     </>
   );
 }

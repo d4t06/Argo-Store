@@ -24,43 +24,38 @@ export default function CheckoutPage() {
 		<>
 			<Header title="Checkout" />
 
-			<div className="flex-1 pb-10 overflow-auto">
-				<div className="space-y-4">
-					<div className="space-y-1">
-						<Label title="Info" icon={<DocumentTextIcon className="w-6" />} />
+			<div className="flex-1 space-y-4 pb-[80px] overflow-auto">
+				<div className="space-y-1">
+					<Label title="Info" icon={<DocumentTextIcon className="w-6" />} />
 
-						<Frame>
-							<div className="space-y-3">
-								<div className="">
-									<p className={classes.label}>Customer:</p>
-									<p className="text-3xl">{customer.customer_name}</p>
-								</div>
-								<div className="">
-									<p className={classes.label}>Payment</p>
-									<p className="text-[18px]">
-										{invoice.payment === "no" ? "No" : "Tien mat"}
-									</p>
-								</div>
+					<Frame>
+						<div className="space-y-3">
+							<div className="">
+								<p className={classes.label}>Customer:</p>
+								<p className="text-3xl">{customer.customer_name}</p>
 							</div>
-						</Frame>
-					</div>
-					<div className="space-y-1">
-						<Label
-							title="Products"
-							icon={<ShoppingBagIcon className="w-6" />}
-						/>
-						<Frame>
-							<div className="gap-1">
-								{invoice.items.map((iItem, i) => (
-									<CheckoutInvoiceItem invoiceItem={iItem} key={i} />
-								))}
+							<div className="">
+								<p className={classes.label}>Payment</p>
+								<p className="text-[18px]">
+									{invoice.payment === "no" ? "No" : "Tien mat"}
+								</p>
 							</div>
-							<div className="mt-5">
-								<p>Total:</p>
-								<p>{moneyFormat(totalInvoicePrice)}</p>
-							</div>
-						</Frame>
-					</div>
+						</div>
+					</Frame>
+				</div>
+				<div className="space-y-1">
+					<Label title="Products" icon={<ShoppingBagIcon className="w-6" />} />
+					<Frame>
+						<div className="gap-1">
+							{invoice.items.map((iItem, i) => (
+								<CheckoutInvoiceItem invoiceItem={iItem} key={i} />
+							))}
+						</div>
+						<div className="mt-5">
+							<p>Total:</p>
+							<p>{moneyFormat(totalInvoicePrice)}</p>
+						</div>
+					</Frame>
 				</div>
 			</div>
 

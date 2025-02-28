@@ -18,7 +18,7 @@ export default function ProductListItem({ product, selected }: Props) {
         }
       />
 
-      <div className="ml-2 max-w-[60%]">
+      <div className="ml-2">
         <p
           className={`text-[18px] break-all  ${
             selected ? "text-xanh-500" : "text-[#1f1f1f]"

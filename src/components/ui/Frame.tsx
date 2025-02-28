@@ -6,6 +6,7 @@ const Variant = cva("border-[2px] p-3 border-b-[6px] rounded-[14px]", {
     colors: {
       primary: "bg-white border-[#e1e1e1]",
       second: "bg-[#cee9b6] border-[#4a826f]",
+      third: "bg-white border-[#4a826f]",
       clear: "",
     },
   },

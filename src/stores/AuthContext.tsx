@@ -1,3 +1,4 @@
+import usePersistAuth from "@/hooks/usePersistAuth";
 import { createContext, ReactNode, useContext, useRef, useState } from "react";
 
 const useAuthContext = () => {
@@ -14,13 +15,23 @@ type ContextType = ReturnType<typeof useAuthContext>;
 
 const Context = createContext<ContextType | null>(null);
 
-export default function AuthProvider({ children }: { children: ReactNode }) {
-	return <Context.Provider value={useAuthContext()}>{children}</Context.Provider>;
-}
-
 export function useAuth() {
 	const ct = useContext(Context);
 	if (!ct) throw new Error("auth context not Provided");
 
 	return ct;
+}
+
+function PersistAuth({ children }: { children: ReactNode }) {
+	usePersistAuth();
+
+	return children;
+}
+
+export default function AuthProvider({ children }: { children: ReactNode }) {
+	return (
+		<Context.Provider value={useAuthContext()}>
+			<PersistAuth>{children}</PersistAuth>
+		</Context.Provider>
+	);
 }

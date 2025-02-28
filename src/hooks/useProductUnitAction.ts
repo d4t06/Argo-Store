@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function useProductUnitAction() {
   const [isFetching, setIsFetching] = useState(false);
-  const { resetSelect } = useCartContext();
+  const { resetCart } = useCartContext();
 
   const { currentProductData, action: productActions } = useProductContext();
 
@@ -33,7 +33,7 @@ export default function useProductUnitAction() {
 
     try {
       setIsFetching(true);
-      resetSelect();
+      resetCart();
 
       if (process.env.NODE_ENV === "development") await sleep(300);
 

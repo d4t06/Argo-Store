@@ -1,5 +1,6 @@
 import BubbleCartBtn from "@/components/BubbleCartBtn";
 import Header from "@/components/Header";
+import MenuBtn from "@/components/MenuBtn";
 import ProductListItem from "@/components/ProductListItem";
 import ProductSearchBar from "@/components/ProductSearchBar";
 import { Frame, Loading } from "@/components/ui";
@@ -26,6 +27,8 @@ export default function Home() {
   return (
     <>
       <Header title="Home" />
+      <BubbleCartBtn count={cartItems.length} href="/cart" />
+      <MenuBtn />
       <ProductSearchBar {...rest} />
 
       {isFetching ? (
@@ -49,8 +52,6 @@ export default function Home() {
           )}
         </>
       )}
-
-      <BubbleCartBtn count={cartItems.length} href="/cart" />
     </>
   );
 }

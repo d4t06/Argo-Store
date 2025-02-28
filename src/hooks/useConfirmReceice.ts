@@ -1,6 +1,7 @@
 import { db } from "@/firebase/firebase";
 import { myAddDoc, receiveCollectionRef } from "@/firebase/firebaseService";
 import { useReceivingCartContext } from "@/stores/local/ReceivingCartContext";
+import { useProductContext } from "@/stores/ProductContext";
 import { doc, increment, writeBatch } from "firebase/firestore";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -8,13 +9,14 @@ import { useNavigate } from "react-router-dom";
 export default function useConfirmReceiving() {
   const [isFetching, setIsFetching] = useState(false);
   const { receiving, resetSelect } = useReceivingCartContext();
+  const { shouldFetchData } = useProductContext();
 
   const navigate = useNavigate();
 
   const placeOrder = async () => {
     if (!receiving) return;
 
-    console.log('run here')
+    console.log("run here");
 
     try {
       setIsFetching(true);
@@ -34,6 +36,7 @@ export default function useConfirmReceiving() {
       await batch.commit();
 
       resetSelect();
+      shouldFetchData.current = true;
 
       navigate("/menu/receive");
     } catch (error) {

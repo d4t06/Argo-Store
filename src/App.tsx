@@ -7,19 +7,23 @@ import {
 } from "react-router";
 import { protectedRoutes, publicRoutes } from "./routes";
 import { Loading } from "./components/ui";
-import DefaultLayout from "./layouts/DefaultLayout";
-import usePersistAuth from "./hooks/usePersistAuth";
 import NotFoundPage from "./pages/NotFound";
-// import useBrowserHistory from "./hooks/useBrowserHistory";
+import { ReactNode } from "react";
+import GlobalLayout from "./layouts/GlobalLayout";
+import { useAuth } from "./stores/AuthContext";
 
 function RequireAuth() {
-  const { user, loading } = usePersistAuth();
+  const { user, loading } = useAuth();
 
   if (loading) return <Loading />;
 
   if (!user) return <Navigate to={"/login"} />;
 
   return <Outlet />;
+}
+
+function OutletLayout({ children }: { children: ReactNode }) {
+  return children;
 }
 
 export default function App() {
@@ -31,9 +35,7 @@ export default function App() {
 
           {publicRoutes.map((route, index) => {
             const Page = route.component;
-            let Layout;
-            if (route.layout) Layout = route.layout;
-            else Layout = DefaultLayout;
+            const Layout = route.layout || OutletLayout;
 
             return (
               <Route
@@ -48,25 +50,25 @@ export default function App() {
             );
           })}
 
-          <Route element={<RequireAuth />}>
-            {protectedRoutes.map((route, index) => {
-              const Page = route.component;
-              let Layout;
-              if (route.layout) Layout = route.layout;
-              else Layout = DefaultLayout;
+          <Route element={<GlobalLayout />}>
+            <Route element={<RequireAuth />}>
+              {protectedRoutes.map((route, index) => {
+                const Page = route.component;
+                const Layout = route.layout ?? OutletLayout;
 
-              return (
-                <Route
-                  key={index}
-                  path={route.path}
-                  element={
-                    <Layout>
-                      <Page />
-                    </Layout>
-                  }
-                />
-              );
-            })}
+                return (
+                  <Route
+                    key={index}
+                    path={route.path}
+                    element={
+                      <Layout>
+                        <Page />
+                      </Layout>
+                    }
+                  />
+                );
+              })}
+            </Route>
           </Route>
         </Routes>
       </Router>

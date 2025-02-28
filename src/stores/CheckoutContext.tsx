@@ -19,7 +19,7 @@ function useCheckout() {
     [invoice]
   );
 
-  const reset = () => {
+  const resetCheckout = () => {
     setInvoice(undefined);
     setCustomer(undefined);
     setPayMethod("tien-mat");
@@ -36,7 +36,7 @@ function useCheckout() {
     setInvoice,
     newInvoiceId,
     totalInvoicePrice: +totalInvoicePrice.toFixed(1),
-    reset,
+    resetCheckout,
   };
 }
 

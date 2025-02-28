@@ -3,16 +3,18 @@ import { invoiceCollectionRef, myAddDoc } from "@/firebase/firebaseService";
 import { useCartContext } from "@/stores/CartContext";
 import { useCheckoutContext } from "@/stores/CheckoutContext";
 import { useCustomerContext } from "@/stores/CustomerContext";
+import { useProductContext } from "@/stores/ProductContext";
 import { doc, increment, writeBatch } from "firebase/firestore";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function usePlaceOrder() {
   const [isFetching, setIsFetching] = useState(false);
-  const { invoice, reset, totalInvoicePrice, newInvoiceId, customer } =
+  const { invoice, resetCheckout, totalInvoicePrice, newInvoiceId, customer } =
     useCheckoutContext();
-  const { resetSelect } = useCartContext();
+  const { resetCart } = useCartContext();
   const { shouldFetchCustomer } = useCustomerContext();
+  const { shouldFetchData } = useProductContext();
 
   const navigater = useNavigate();
 
@@ -47,8 +49,10 @@ export default function usePlaceOrder() {
       // submit batch
       await batch.commit();
 
-      reset();
-      resetSelect();
+      resetCheckout();
+      resetCart();
+
+      shouldFetchData.current = true;
       shouldFetchCustomer.current = true;
 
       navigater("/finished");

@@ -32,7 +32,7 @@ export default function CustomerReceipt() {
 
           {!!currentCustomerData?.customer?.total_debt && (
             <Button
-              href={`/menu/customers/${currentCustomerData.customer.id}/create-receipt`}
+              href={`/menu/customer/${currentCustomerData.customer.id}/create-receive`}
             >
               <PlusIcon className="w-6" />
               <span>Add receipt</span>

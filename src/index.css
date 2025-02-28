@@ -4,13 +4,14 @@
 
 @layer base {
   :root {
-  --color-xanh-400: #cee9b6;
-  --color-xanh-500: #5a9e87;
+    --color-xanh-400: #cee9b6;
+    --color-xanh-500: #5a9e87;
   }
 }
 
 body {
   overflow: hidden;
+/*  background-color: var(--color-xanh-500);*/
 }
 
 button[disabled],

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button, Frame } from "./ui";
 import {
 	Bars3Icon,
+	Cog6ToothIcon,
 	CubeIcon,
 	DocumentTextIcon,
 	HomeIcon,
@@ -44,7 +45,8 @@ export default function MenuBtn() {
 			</Button>
 
 			<Frame
-				className={`absolute flex duration-[.25] flex-col transition-[left,opacity] bottom-[80px] p-2 ${isOpen ? "left-[10px] opacity-[1] pointer-events-auto" : "left-0 opacity-[0] pointer-events-none"}`}
+				colors={"third"}
+				className={`absolute bg-white flex duration-[.25] flex-col transition-[left,opacity] bottom-[80px] p-2 ${isOpen ? "left-[10px] opacity-[1] pointer-events-auto" : "left-0 opacity-[0] pointer-events-none"}`}
 			>
 				<Link to={"/"} className={classes.linkItem}>
 					<HomeIcon className="w-6" />
@@ -65,6 +67,11 @@ export default function MenuBtn() {
 				<Link to={"/menu/receive"} className={classes.linkItem}>
 					<HomeModernIcon className="w-6" />
 					<span>Receive</span>
+				</Link>
+
+				<Link to={"/menu/setting"} className={classes.linkItem}>
+					<Cog6ToothIcon className="w-6" />
+					<span>Settings</span>
 				</Link>
 			</Frame>
 		</>
