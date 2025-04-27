@@ -4,7 +4,6 @@ import { moneyFormat } from "@/utils/moneyFormat";
 import ModalHeader from "../ui/ModalHeader";
 import { Button } from "../ui";
 import { PrinterIcon } from "@heroicons/react/24/outline";
-import usePrinter from "@/hooks/usePrinter";
 import CheckoutReceivingItem from "../CheckoutReceivingItem";
 
 type Props = {
@@ -12,12 +11,6 @@ type Props = {
   closeModal: () => void;
 };
 export default function ReceiveInfoModal({ receiving, closeModal }: Props) {
-  const printer = usePrinter();
-
-  const handlePrint = async () => {
-    await printer("asdfsdf");
-  };
-
   return (
     <>
       <ModalHeader title="Receiving Detail" closeModal={closeModal} />
@@ -43,7 +36,7 @@ export default function ReceiveInfoModal({ receiving, closeModal }: Props) {
       </Frame>
 
       <p className="text-center mt-3">
-        <Button onClick={handlePrint}>
+        <Button>
           <PrinterIcon className="w-6" />
           <span>Print</span>
         </Button>

@@ -5,14 +5,19 @@ import ModalHeader from "../ui/ModalHeader";
 import CheckoutInvoiceItem from "../CheckoutInvoiceItem";
 import { Button } from "../ui";
 import { PrinterIcon } from "@heroicons/react/24/outline";
+import usePrinter from "@/hooks/usePrinter";
+import { generateInvoiceHtmnl } from "@/utils/generateInvoceHtml";
 
 type Props = {
   invoice: Invoice;
   closeModal: () => void;
 };
 export default function InvoiceInfoModal({ invoice, closeModal }: Props) {
-  const handlePrint = async () => {};
+  const { print, isPrinting, isOnMobile } = usePrinter();
 
+  const handlePrint = () => {
+    print(generateInvoiceHtmnl(invoice, isOnMobile));
+  };
   return (
     <>
       <ModalHeader title="Invoice Detail" closeModal={closeModal} />
@@ -38,7 +43,7 @@ export default function InvoiceInfoModal({ invoice, closeModal }: Props) {
       </Frame>
 
       <p className="text-center mt-3">
-        <Button onClick={handlePrint}>
+        <Button loading={isPrinting} onClick={handlePrint}>
           <PrinterIcon className="w-6" />
           <span>Print</span>
         </Button>

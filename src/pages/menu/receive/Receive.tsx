@@ -41,7 +41,7 @@ export default function ReceivesScreen() {
       ) : (
         <>
           {receives.length ? (
-            <div className="space-y-2">
+            <div className="space-y-2.5 overflow-auto pb-[20]">
               {receives.map((receiving, i) => (
                 <ReceivingItem receiving={receiving} key={i} />
               ))}

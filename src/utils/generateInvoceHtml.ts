@@ -1,38 +1,56 @@
+import { convertFirestoreTimestampToString } from "./appHelper";
 import { moneyFormat } from "./moneyFormat";
 
-export function generateInvoiceHtmnl(invoice: Invoice, date: string) {
+export function generateInvoiceHtmnl(invoice: Invoice, isOnMobile: boolean) {
+  const date = convertFirestoreTimestampToString(invoice.created_at);
+
   return `
 <html>
-
   <body>
-   <style>
-   body {
-    padding:10px;
-   }
-html {
-  font-size: 62.5%;
+  <style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+html {
+  ${isOnMobile ? "font-size: 80%;" : ""}
+  font-family: Arial, sans-serif;
+}
+
+body {
+  // height: 595px;
+  // width: 420px;
+  // margin: auto;
+  ${isOnMobile ? "padding: 3rem 4rem" : "padding: 3rem"}
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 2rem;
 }
 table th,
 table td {
-  font-size: 10px;
+  padding: 0.5rem;
+  border: 1px solid #000;
+  font-size: 1.2rem;
 }
 table th {
   text-transform: uppercase;
-  text-align: left;
+  background-color: #e1e1e1;
 }
 
   </style>
       <h3>Ngày mua: ${date}</h3>
       <h3>Khách hàng: ${invoice.customer_name}</h3>
-      <table cellspacing="0">
+      <h3>Thanh toán: ${invoice.payment === "tien-mat" ? "Tiền mặt" : "Nợ"}</h1>
+      <table>
          <thead>
             <tr>
-               <th>STT</th>
+               <th style="text-align: center;">STT</th>
                <th>Sản phẩm</th>
                <th>Đơn vị</th>
                <th>SL</th>
@@ -47,7 +65,7 @@ table th {
                 prev +
                 `
                 <tr>
-                   <td style="font-weight: bold">${i + 1}</td>
+                   <td style="text-align: center;">${i + 1}</td>
                    <td>${cur.product_name}</td>
                    <td>${cur.unit_name}</td>
                    <td>${cur.quantity}</td>
@@ -57,12 +75,14 @@ table th {
                 `,
               "",
             )}
+
+            <tr style="font-weight: 500;">
+              <td colspan="5">Tổng cộng:</td>
+              <td style="text-align: right; font-weight: 500;">${moneyFormat(invoice.total_price)}</td>
+            </tr>
          </tbody>
       </table>
-
-      <p style="text-align:right; padding-bottom:10px; margin-top:20px;">Tổng cộng: ${moneyFormat(invoice.total_price)}</p>
   </body>
- 
 </html>
   `;
 }

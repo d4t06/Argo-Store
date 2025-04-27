@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import MenuBtn from "@/components/MenuBtn";
 import { Button } from "@/components/ui";
 import useAuthAction from "@/hooks/useAuthAction";
 import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/outline";
@@ -15,6 +16,7 @@ export default function SettingPage() {
 	return (
 		<>
 			<Header title="Setting" />
+			<MenuBtn />
 
 			<p className="text-center mt-auto">
 				<Button onClick={handleLogout}>

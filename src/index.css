@@ -11,13 +11,12 @@
 
 body {
   overflow: hidden;
-/*  background-color: var(--color-xanh-500);*/
+  /*  background-color: var(--color-xanh-500);*/
 }
 
 button[disabled],
 .disabled {
   pointer-events: none;
-  opacity: 0.6;
 }
 
 .no-scrollbar::-webkit-scrollbar {

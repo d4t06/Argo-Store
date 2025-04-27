@@ -1,8 +1,7 @@
 import { convertFirestoreTimestampToString } from "@/utils/appHelper";
 import { moneyFormat } from "@/utils/moneyFormat";
 
-import usePrinter from "@/hooks/usePrinter";
-import { generateInvoiceHtmnl } from "@/utils/generateInvoceHtml";
+// import { generateInvoiceHtmnl } from "@/utils/generateInvoceHtml";
 import { useInvoiceContext } from "@/stores/local/InvoicesContext";
 import { Button, Frame, Label } from "@/components/ui";
 import {
@@ -14,22 +13,22 @@ import CheckoutInvoiceItem from "@/components/CheckoutInvoiceItem";
 import Header from "@/components/Header";
 import MenuBtn from "@/components/MenuBtn";
 import NotFoundPage from "@/pages/NotFound";
+import usePrinter from "@/hooks/usePrinter";
+import { generateInvoiceHtmnl } from "@/utils/generateInvoceHtml";
+// import PrintModal from "@/components/ui/PrintModal";
+// import { useState } from "react";
 
 export default function InvoiceDetailPage() {
   const { currentInvoiceData } = useInvoiceContext();
 
-  const printer = usePrinter();
+  const { isPrinting, print, isOnMobile } = usePrinter();
+
+  // const [isOpen, setIsOpen] = useState(false);
 
   const handlePrint = () => {
     if (!currentInvoiceData) return;
-    const { invoice } = currentInvoiceData;
 
-    const content = generateInvoiceHtmnl(
-      invoice,
-      convertFirestoreTimestampToString(invoice.created_at),
-    );
-
-    printer(content);
+    print(generateInvoiceHtmnl(currentInvoiceData.invoice, isOnMobile));
   };
 
   if (!currentInvoiceData) return <NotFoundPage />;
@@ -92,10 +91,39 @@ export default function InvoiceDetailPage() {
       <Button
         onClick={handlePrint}
         size={"clear"}
-        className="p-2 !absolute bottom-7 right-5"
+        loading={isPrinting}
+        className="p-2 !absolute bottom-5 right-5"
       >
         <PrinterIcon className="w-6" />
       </Button>
+
+      {/* <PrintModal close={() => setIsOpen(false)} isOpen={isOpen}>
+        <table className="w-full [&_td]:p-2 [&_td]:border [&_th]:border">
+          <thead>
+            <tr className="bg-[#f1f1f1]">
+              <th className="text-center">STT</th>
+              <th>Sản phẩm</th>
+              <th>Đơn vị</th>
+              <th>SL</th>
+              <th>Giá</th>
+              <th>Thành tiền</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {invoice.items.map((item, i) => (
+              <tr key={i}>
+                <td className="text-center font-bold">{i + 1}</td>
+                <td>{item.product_name}</td>
+                <td>{item.unit_name}</td>
+                <td>{item.quantity}</td>
+                <td>{moneyFormat(item.price)}</td>
+                <td className="text-right">{moneyFormat(item.price * item.quantity)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </PrintModal>*/}
     </>
   );
 }
